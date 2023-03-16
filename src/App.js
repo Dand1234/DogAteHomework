@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
+import { AuthenticationPage } from './components/pages/AuthenticationPage/AuthenticationPage';
+import { MainPage } from './components/pages/MainPage/MainPage';
+import { RegistrationPage } from './components/pages/RegistrationPage/RegistrationPage';
+import { Layout } from './components/Layout/Layout';
+import { StartPage } from './components/pages/StartPage/StartPage';
 import './App.css';
+import { PersonalAccount } from './components/pages/PersonalAccount/PersonalAccount';
+import { ShoppingCart } from './components/pages/ShoppingCart/ShoppingCart';
+import { AccountChange } from './components/pages/AccountChange/AccountChange';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Layout />}> 
+          <Route index element={<StartPage />} />       
+          <Route path='main' element={<MainPage />} />
+          <Route path='authentication' element={<AuthenticationPage />} />
+          <Route path='registration' element={<RegistrationPage />} />
+          <Route path='user' element={<PersonalAccount/>} />
+          <Route path='cart' element={<ShoppingCart />} />
+          <Route path='userch' element={<AccountChange />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
