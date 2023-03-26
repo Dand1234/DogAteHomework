@@ -1,31 +1,30 @@
 import { Route, Routes } from 'react-router-dom';
-import { AuthenticationPage } from './components/pages/AuthenticationPage/AuthenticationPage';
-import { MainPage } from './components/pages/MainPage/MainPage';
-import { RegistrationPage } from './components/pages/RegistrationPage/RegistrationPage';
-import { Layout } from './components/Layout/Layout';
-import { StartPage } from './components/pages/StartPage/StartPage';
+import { Layout } from './Layout/Layout';
+import { AuthPage } from './pages/AuthPage/AuthPage';
+import { MainPage } from './pages/MainPage/MainPage';
+import { RegPage } from './pages/RegPage/RegPage';
+import { UserPage } from './pages/UserPage/UserPage';
+import { CartPage } from './pages/CartPage/CartPage';
+import { StartPage } from './pages/StartPage/StartPage';
 import './App.css';
-import { PersonalAccount } from './components/pages/PersonalAccount/PersonalAccount';
-import { ShoppingCart } from './components/pages/ShoppingCart/ShoppingCart';
-import { AccountChange } from './components/pages/AccountChange/AccountChange';
 
 
-function App() {
+
+export function App() {
+
+
   return (
     <>
       <Routes>
         <Route path='/' element={<Layout />}> 
           <Route index element={<StartPage />} />       
           <Route path='main' element={<MainPage />} />
-          <Route path='authentication' element={<AuthenticationPage />} />
-          <Route path='registration' element={<RegistrationPage />} />
-          <Route path='user' element={<PersonalAccount/>} />
-          <Route path='cart' element={<ShoppingCart />} />
-          <Route path='userch' element={<AccountChange />} />
+          <Route path='auth' element={<AuthPage />} />
+          <Route path='reg' element={<RegPage />} />
+          <Route path='user' element={<UserPage/>} />
+          <Route path='cart' element={<CartPage />} />
         </Route>
       </Routes>
     </>
   );
 }
-
-export default App;

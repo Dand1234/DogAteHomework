@@ -1,0 +1,19 @@
+.startDiv {
+    width: 350px;
+    height: 450px;
+    border-radius: 15px;
+    background-color: rgb(221, 171, 54);
+    color: white;
+    position: relative;
+    text-align: center;
+    margin: 5%;
+    left: 30%;
+}
+.startDiv button {
+    min-width: 200px;
+    height: 45px;
+    border-radius: 15px;
+    background-color: rgb(203, 74, 31);
+    color: white;
+    position: relative;
+}

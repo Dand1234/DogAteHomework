@@ -4,13 +4,19 @@ import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
 
-export const RegistrationPage = () => {
+export const RegPage = () => {
 
     const validationsSchema = yup.object().shape({
         email: yup.string().email('Введите верный email').required('Укажите Ваш e-mail!'),
         password: yup.string().required('Укажите пароль!'),
         group: yup.string().required('Укажите номер Вашей группы!'),
       })
+
+      const initialValues = {
+        email: '',
+        password: '',
+        group: ''
+    }
     
     const navigate = useNavigate();
 
@@ -40,11 +46,7 @@ export const RegistrationPage = () => {
     return(
         <>
         <Formik
-        initialValues={{
-            email: '',
-            password: '',
-            group: ''
-        }}
+        initialValues={initialValues}
 
         validateOnBlur
         onSubmit={(values) => { 
@@ -97,7 +99,6 @@ export const RegistrationPage = () => {
             {touched.group && errors.group && <p className={'error'}>{errors.group}</p>}
 
             <button
-              disabled={!isValid || !dirty}
               onClick={handleSubmit}
               type={`submit`}
             >Регистрация</button>

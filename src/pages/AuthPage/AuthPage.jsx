@@ -1,36 +1,55 @@
 import { Formik } from "formik";
 import * as yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useMutation } from '@tanstack/react-query';
 import { useState } from "react";
 
 
-export const AuthenticationPage = () => {
+export const AuthPage = () => {
+
     const validationsSchema = yup.object().shape({
         email: yup.string().email('Введите верный email').required('Укажите Ваш e-mail!'),
         password: yup.string().required('Укажите пароль!'),
       });
 
-    const navigate = useNavigate();
-    const [body,setBody] = useState({});
+     const initialValues = {
+        email: '',
+        password: ''
+    }
 
-    const { mutate:authQuery, isLoading, isError, error } = useMutation({
-      mutationKey: ["authentification"],
-      mutationFn: () => {
-          fetch("https://api.react-learning.ru/signin", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        })
-        .then(res => res.json())
-        .then(responce => {localStorage.setItem('token',responce.token);
-      })
-      },
-    });  
+    const onSubmit = (values) => {
+      localStorage.setItem('email',`${values.email}`)
+      localStorage.setItem('password',`${values.password}`)
+      authQuery(values);
+    }
+
+
+    const navigate = useNavigate();
+
+    const {mutateAsync:authQuery, isLoading, isError, error } = useMutation({
+      mutationKey: ['authQuery'],
+      mutationFn: async (authData) => {
+        
+        const query = await fetch('https://api.react-learning.ru/signin',{
+                  method: 'POST',
+                  headers:{
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(authData),
+              }
+      );
+        const result = await query.json();
+
+        localStorage.setItem('token',`${result.token}`)
+
+        navigate('../main')
+        
+        return result;
+    }
+
+  })
 
     if (isLoading) return <h2>Loading in progress</h2>
 
@@ -38,18 +57,11 @@ export const AuthenticationPage = () => {
 
     return(
     <>
-        This is an Authentication page
+        Введите данные для входа:
         <Formik
-        initialValues={{
-            email: '',
-            password: ''
-        }}
+        initialValues={initialValues}
         validateOnBlur
-        onSubmit={(values) => { 
-          setBody(values);
-          console.log(body)
-          authQuery(body);
-         }}
+        onSubmit={onSubmit}
         validationSchema={validationsSchema}
       >
         {({ values, errors, touched, isValid, handleSubmit, handleChange, handleBlur, dirty }) => (
@@ -82,14 +94,13 @@ export const AuthenticationPage = () => {
             {touched.password && errors.password && <p className={'error'}>{errors.password}</p>}
 
             <button
-              disabled={!isValid || !dirty}
               onClick={handleSubmit}
               type={`submit`}
             >Войти</button>
           </div>
         )}
       </Formik>
-        <Link to='..'><button>Back</button></Link>
+        <Link to='..'>Назад</Link>
     </>
     )
 }
