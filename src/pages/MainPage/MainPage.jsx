@@ -29,7 +29,9 @@ export const MainPage = () => {
         <div className='mainFrame'>
             {data.products.map(card =>
                 <div className="productCard" key = {card._id}>
+                    <img src={card.pictures} alt="pucture" />
                     <h2>{card.name}</h2>
+                    <p>likes: {card.likes.length}</p>
                 </div>)}
                 
         </div>

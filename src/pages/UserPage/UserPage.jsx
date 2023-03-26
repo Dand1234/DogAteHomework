@@ -4,6 +4,7 @@ import { Modal } from '../../components/Modal/Modal';
 import { useState } from 'react';
 import { UserChangeNameOrAboutMdl } from "../../components/Modal/UserChangeMdl/UserChangeNameOrAboutMdl"
 import { UserChangeAvatarMdl } from "../../components/Modal/UserChangeMdl/UserChangeAvatarMdl"
+import './index.css'
 
 
 export const UserPage = () => {
@@ -42,7 +43,8 @@ export const UserPage = () => {
     }
 
     return (
-        <>
+        <div className="userInfo">
+            <h1>Описание аккаунта</h1>
             <p>Ваше имя: {data.name} </p>
             <p>Ваше описание: {data.about}</p>
             <p>Ваше группа: {data.group}</p>
@@ -55,6 +57,6 @@ export const UserPage = () => {
                 >Изменить имя или описание</button>         
             <button><Link to = "..">Назад</Link></button>
             <Modal active={modalState} setActive={setModalState} Children={modalVisual}/>   
-        </>
+        </div>
     )
 }

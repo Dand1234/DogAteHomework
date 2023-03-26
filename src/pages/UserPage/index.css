@@ -1,0 +1,35 @@
+.userInfo  {
+    margin: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.userInfo h1 {
+    font-size: larger;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.userInfo p {
+    font-size: medium;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.userInfo button {
+    width: 200px;
+    height: 20px;
+    background-color: rgb(219, 129, 19);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 30px;
+}
+
+.userInfo img {
+    width: 400px;
+    border-radius: 15px;
+    margin: 20px;
+}
