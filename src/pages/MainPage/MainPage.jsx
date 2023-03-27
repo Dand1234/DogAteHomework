@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import '../MainPage/style.mainPage.css'
+import { useNavigate } from "react-router-dom";
+import './index.css'
 
 export const MainPage = () => {
 
     const token = localStorage.getItem('token');
+
+    const navigate = useNavigate(); 
 
 
     const{ data, isLoading, isError, error } = useQuery({
@@ -26,13 +29,14 @@ export const MainPage = () => {
 
 
     return(
-        <div className='mainFrame'>
-            {data.products.map(card =>
-                <div className="productCard" key = {card._id}>
-                    <img src={card.pictures} alt="pucture" />
-                    <h2>{card.name}</h2>
-                    <p>likes: {card.likes.length}</p>
-                </div>)}
-                
-        </div>
+            <div className='container mainFrame'>
+                {data.products.map(card =>
+                    <div className="productCard" key = {card._id}>
+                        <img src={card.pictures} alt="pucture" />
+                        <h2>{card.name}</h2>
+                        <p>likes: {card.likes.length}</p>
+                        <button onClick={() => navigate('/detail')}>Подробнее</button>
+                    </div>)}
+                    
+            </div>   
     )}

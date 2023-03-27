@@ -8,7 +8,7 @@ export const StartPage = () => {
 
     const token = localStorage.getItem('token');
 
-    // useEffect (() => {if (token !== 'undefined') navigate('/main')})
+    useEffect (() => {if (token !== 'undefined') navigate('/main')})
 
     return(
         <>
