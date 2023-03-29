@@ -7,10 +7,10 @@ export const ProductCard = ({card}) => {
 
     return (
         <div className="productCard" key = {card._id}>
-        <img src={card.pictures} alt="pucture" />
+        <img src={card.pictures} alt="pucture" className='productCard__img' />
         <h2>{card.name}</h2>
-        <p><img src={Like} alt='нрав' className='productCard__like'/> {card.likes.length}</p> {/*TODO:Стили иконки лайка*/}
-        <button onClick={() => {navigate('/detail')}}>Подробнее</button>
+        <img src={Like} alt='нрав' className='productCard__like'/><span> {card.likes.length}</span> {/*TODO:Стили иконки лайка*/}
+        <button onClick={() => {navigate('/detail')}} className='productCard__button'>Подробнее</button>
         </div>
     )
 }

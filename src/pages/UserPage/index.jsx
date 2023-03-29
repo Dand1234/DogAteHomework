@@ -58,11 +58,11 @@ export const UserPage = () => {
                 <img src = {data.avatar} alt='Фотокарточка'/>
             </div>
             <div className="buttonSection">            
-                    <button onClick = {() => modalOpenHandler(<UserChangeAvatarMdl />)}
+                    <button onClick = {() => modalOpenHandler(<UserChangeAvatarMdl />)} className='buttonSection__button'
                         >Изменить фото</button>
-                    <button onClick = {() => modalOpenHandler(<UserChangeNameOrAboutMdl />)}
+                    <button onClick = {() => modalOpenHandler(<UserChangeNameOrAboutMdl />)} className='buttonSection__button'
                         >Изменить имя или описание</button>         
-                    <button onClick={() => navigate('..')}>Назад</button>
+                    <button onClick={() => navigate('..')} className='buttonSection__button'>Назад</button>
             </div>
             <Modal active={modalState} setActive={setModalState} children={modalVisual}/> 
             {/* не совсем понял, почему нельзя передавать тело модалки через стейт (и, если честно, как это по другому реализовать) */}

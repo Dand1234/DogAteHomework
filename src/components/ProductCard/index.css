@@ -7,7 +7,7 @@
     margin: 20px
 }
 
-.productCard img {
+.productCard__img {
     width: 150px;
     height: 150px;
     border-radius: 15px;
@@ -16,5 +16,14 @@
 }
 
 .productCard__like {
-    width: 40px;
+    width: 30px;
+}
+
+.productCard__button {
+    width: 100px;
+    height: 30px;
+    background-color: rgb(243, 205, 107);
+    border-radius: 15px;
+    margin: 30px;
+    margin: 50px;
 }
