@@ -8,15 +8,17 @@ export const StartPage = () => {
 
     const token = localStorage.getItem('token');
 
-    useEffect (() => {if (token !== 'undefined') navigate('/main')})
+    useEffect (() => {if (token !== null) navigate('/main')},[navigate, token])
 
     return(
         <>
-            <div className='startDiv'>
+            <div className='wrapper'>
                 <h1>Здравствуйте!</h1>
-                <h2>Пожалуйста, войдите или зарегистриркйтесь!</h2>
-                <button onClick={() => navigate('/auth')}>Войти</button>
-                <button onClick={() => navigate('/reg')}>Зарегистрироваться</button>
+                <h2>Пожалуйста, войдите или зарегистрируйтесь!</h2>
+                <div className='start__buttonSection'>
+                    <button onClick={() => navigate('/auth')} className='button'>Войти</button>
+                    <button onClick={() => navigate('/reg')} className='button'>Зарегистрироваться</button>
+                </div>
             </div>
         </>
     )

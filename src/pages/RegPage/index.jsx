@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from "react-router-dom";
+import './index.css'
 
 export const RegPage = () => {
 
@@ -54,62 +54,63 @@ export const RegPage = () => {
 
     return(
         <>
-        <Formik
-        initialValues={initialValues}
-        validateOnBlur
-        onSubmit={onSubmit}
-        validationSchema={validationsSchema}
-      >
-        {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
-          <div className='from'>
+          <Formik
+          initialValues={initialValues}
+          validateOnBlur
+          onSubmit={onSubmit}
+          validationSchema={validationsSchema}
+        >
+          {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+            <div className='wrapper'>
+              <h2>Введите данные для регистрации</h2>
+              <p>
+                <label htmlFor='email'>Email</label><br />
+                <input
+                  className='input'
+                  type='email'
+                  name='email'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                />
+              </p>
+              {touched.email && errors.email && <p className='error'>{errors.email}</p>}
 
-            <p>
-              <label htmlFor='email'>Email</label><br />
-              <input
-                className='input'
-                type='email'
-                name='email'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-            </p>
-            {touched.email && errors.email && <p className='error'>{errors.email}</p>}
+              <p>
+                <label htmlFor='password'>Пароль</label><br />
+                <input
+                  className='input'
+                  type='password'
+                  name='password'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+              </p>
+              {touched.password && errors.password && <p className={'error'}>{errors.password}</p>}
 
-            <p>
-              <label htmlFor='password'>Пароль</label><br />
-              <input
-                className='input'
-                type='password'
-                name='password'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-            </p>
-            {touched.password && errors.password && <p className={'error'}>{errors.password}</p>}
+              <p>
+                <label htmlFor='group'>Номер группы</label><br />
+                <input
+                  className='input'
+                  type='group'
+                  name='group'
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.group}
+                />
+              </p>
+              {touched.group && errors.group && <p className={'error'}>{errors.group}</p>}
 
-            <p>
-              <label htmlFor='group'>Номер группы</label><br />
-              <input
-                className='input'
-                type='group'
-                name='group'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.group}
-              />
-            </p>
-            {touched.group && errors.group && <p className={'error'}>{errors.group}</p>}
-
-            <button
-              onClick={handleSubmit}
-              type='submit'
-            >Регистрация</button>
-          </div>
-        )}
-      </Formik>
-        <Link to='..'><button>Назад</button></Link>
+              <button
+                onClick={handleSubmit}
+                type='submit'
+                className="button"
+              >Регистрация</button>
+            </div>
+          )}
+        </Formik>
+        <button onClick={() => navigate('..')} className="button">Назад</button>
         </>
     )
 }

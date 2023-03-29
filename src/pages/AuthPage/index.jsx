@@ -2,7 +2,7 @@ import { Formik } from "formik";
 import * as yup from 'yup';
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from '@tanstack/react-query';
-
+import './index.css'
 
 export const AuthPage = () => {
     const navigate = useNavigate();
@@ -52,7 +52,6 @@ export const AuthPage = () => {
 
     return(
     <>
-        Введите данные для входа:
         <Formik
         initialValues={initialValues}
         validateOnBlur
@@ -60,14 +59,14 @@ export const AuthPage = () => {
         validationSchema={validationsSchema}
       >
         {({ values, errors, touched, isValid, handleSubmit, handleChange, handleBlur, dirty }) => (
-          <div className={`from`}>
-
+          <div className='wrapper'>
+            <h1>Введите данные для входа</h1>
             <p>
-              <label htmlFor={`email`}>Email</label><br />
+              <label htmlFor='email'>Email</label><br />
               <input
-                className={'input'}
-                type={`email`}
-                name={`email`}
+                className='input'
+                type='email'
+                name='email'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
@@ -76,11 +75,11 @@ export const AuthPage = () => {
             {touched.email && errors.email && <p className={'error'}>{errors.email}</p>}
 
             <p>
-              <label htmlFor={`password`}>Пароль</label><br />
+              <label htmlFor='password'>Пароль</label><br />
               <input
-                className={'input'}
-                type={`password`}
-                name={`password`}
+                className='input'
+                type='password'
+                name='password'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
@@ -90,7 +89,8 @@ export const AuthPage = () => {
 
             <button
               onClick={handleSubmit}
-              type={`submit`}
+              type='submit'
+              className="button"
             >Войти</button>
           </div>
         )}
