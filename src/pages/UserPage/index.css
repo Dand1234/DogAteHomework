@@ -1,5 +1,5 @@
 .userInfo  {
-    margin: 20px;
+    margin: 10px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,6 @@
 .buttonSection {
     display: flex;
     justify-content: center;
-    width: 100vw;
 }
 .buttonSection__button {
     width: 200px;
@@ -42,5 +41,4 @@
     background-color: darkgoldenrod;
     border-radius: 15px;
     margin: 30px;
-    margin: 50px;
 }
