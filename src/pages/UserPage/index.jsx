@@ -65,6 +65,7 @@ export const UserPage = () => {
                     <button onClick={() => navigate('..')}>Назад</button>
             </div>
             <Modal active={modalState} setActive={setModalState} children={modalVisual}/> 
+            {/* не совсем понял, почему нельзя передавать тело модалки через стейт (и, если честно, как это по другому реализовать) */}
         </>
     )
 }
