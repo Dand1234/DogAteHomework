@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from './Layout/Layout';
-import { AuthPage } from './pages/AuthPage/AuthPage';
-import { MainPage } from './pages/MainPage/MainPage';
-import { RegPage } from './pages/RegPage/RegPage';
-import { UserPage } from './pages/UserPage/UserPage';
-import { CartPage } from './pages/CartPage/CartPage';
-import { StartPage } from './pages/StartPage/StartPage';
-import { DetailProdPage } from './pages/DetailProdPage/DetailProdPage';
+import { Layout } from './layout/Layout';
+import { AuthPage } from './pages/AuthPage/index';
+import { MainPage } from './pages/MainPage/index';
+import { RegPage } from './pages/RegPage/index';
+import { UserPage } from './pages/UserPage/index';
+import { CartPage } from './pages/CartPage/index';
+import { StartPage } from './pages/StartPage/index';
+import { DetailProdPage } from './pages/DetailProdPage/index';
 import './App.css';
 
 export function App() {
@@ -21,7 +21,7 @@ export function App() {
           <Route path='reg' element={<RegPage />} />
           <Route path='user' element={<UserPage/>} />
           <Route path='cart' element={<CartPage />} />
-          <Route path='detail' element={<DetailProdPage/>} />
+          <Route path='detail' element={<DetailProdPage />} />
         </Route>
       </Routes>
     </div>

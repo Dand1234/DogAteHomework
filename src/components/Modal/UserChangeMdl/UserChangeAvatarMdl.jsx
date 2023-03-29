@@ -30,7 +30,11 @@ export const UserChangeAvatarMdl = () => {
                     Authorization: `Bearer ${token}`,
                   },
                   body: JSON.stringify(info),
-            })}
+
+            
+            })
+            return fetching;
+          }
         })
 
 

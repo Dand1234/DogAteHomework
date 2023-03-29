@@ -1,0 +1,20 @@
+.productCard {
+    height: 400px;
+    width: 300px;
+    background-color: rgb(221, 171, 54);
+    border-radius: 15px;
+    padding: 10px;
+    margin: 20px
+}
+
+.productCard img {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    position: relative;
+    
+}
+
+.productCard__like {
+    width: 40px;
+}

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 export const RegPage = () => {
 
+    const navigate = useNavigate();
+
     const validationsSchema = yup.object().shape({
         email: yup.string().email('Введите верный email').required('Укажите Ваш e-mail!'),
         password: yup.string().required('Укажите пароль!'),
@@ -18,11 +20,11 @@ export const RegPage = () => {
         group: ''
     }
     
-    const navigate = useNavigate();
 
-    const {mutate:regQuery, isError, error } = useMutation({
+    const {mutateAsync:regQuery, isError, error } = useMutation({
         mutationKey: ['registrationQuery'],
-        mutationFn: (regData) => fetch(
+        mutationFn: async (regData) => {
+            const fetching = await fetch(
                 'https://api.react-learning.ru/signup',
                 {
                     method: 'POST',
@@ -32,52 +34,54 @@ export const RegPage = () => {
                     },
                     body: JSON.stringify(regData),
                 },
-        ).then(res => {
+        )
 
-          if (res.status === 409 ) throw new Error ('Пользователь с указанным E-mail уже существует!');
-          else if (res.status > 399 && res.status < 500 ) throw new Error ('Повторите попытку регистрации');
-          else if (res.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже');   
+            const res = await fetching.json();
 
-          else navigate('../main')
-        })
-    })
+              if (res.status === 409 ) throw new Error ('Пользователь с указанным E-mail уже существует!');
+              else if (res.status > 399 && res.status < 500 ) throw new Error ('Повторите попытку регистрации');
+              else if (res.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже');   
+
+            else return navigate('../auth')
+        }})
+
     if (isError) return <p>Ошибка:{error.message}</p>
+
+    const onSubmit = (values) => { 
+      regQuery(values);
+    }
+      
 
     return(
         <>
         <Formik
         initialValues={initialValues}
-
         validateOnBlur
-        onSubmit={(values) => { 
-            console.log(values);
-            regQuery(values);
-            
-        }}
+        onSubmit={onSubmit}
         validationSchema={validationsSchema}
       >
-        {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
-          <div className={`from`}>
+        {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+          <div className='from'>
 
             <p>
-              <label htmlFor={`email`}>Email</label><br />
+              <label htmlFor='email'>Email</label><br />
               <input
-                className={'input'}
-                type={`email`}
-                name={`email`}
+                className='input'
+                type='email'
+                name='email'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
               />
             </p>
-            {touched.email && errors.email && <p className={'error'}>{errors.email}</p>}
+            {touched.email && errors.email && <p className='error'>{errors.email}</p>}
 
             <p>
-              <label htmlFor={`password`}>Пароль</label><br />
+              <label htmlFor='password'>Пароль</label><br />
               <input
-                className={'input'}
-                type={`password`}
-                name={`password`}
+                className='input'
+                type='password'
+                name='password'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
@@ -86,11 +90,11 @@ export const RegPage = () => {
             {touched.password && errors.password && <p className={'error'}>{errors.password}</p>}
 
             <p>
-              <label htmlFor={`group`}>Номер группы</label><br />
+              <label htmlFor='group'>Номер группы</label><br />
               <input
-                className={'input'}
-                type={`group`}
-                name={`group`}
+                className='input'
+                type='group'
+                name='group'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.group}
@@ -100,7 +104,7 @@ export const RegPage = () => {
 
             <button
               onClick={handleSubmit}
-              type={`submit`}
+              type='submit'
             >Регистрация</button>
           </div>
         )}

@@ -1,0 +1,17 @@
+.searchBar {
+    display: flex;
+    max-width: 500px;
+    margin: 30px;
+}
+
+.searchBar__button {
+    height: 40px;
+    border-radius: 15px;
+}
+
+.searchBar__input {
+    height: 40px;
+    border-radius: 15px;
+    margin-right: 20px;
+    min-width: 500px;
+}

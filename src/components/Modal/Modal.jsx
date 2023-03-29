@@ -1,17 +1,17 @@
 import './modal.css';
 import ReactDOM from 'react-dom'
 
-const modal = document.getElementById('modal')
+export const Modal = ({active, setActive, children}) => {
 
-export const Modal = ({active, setActive, Children}) => {
+    const modal = document.getElementById('modal')
 
     return(
         ReactDOM.createPortal(            
                 <div className = {active ? "modal active" : "modal"} onClick={() => setActive(false)}>
                 <div className = 'modal__content' onClick={el => el.stopPropagation()}>
-                    {Children}
+                    {children}
                 </div>
-            </div>,modal)
+            </div>, modal)
 
 
     )

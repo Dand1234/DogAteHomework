@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import './index.css'
+import { ProductCard } from "../../components/ProductCard";
 
 export const MainPage = () => {
+    const navigate = useNavigate(); 
 
     const token = localStorage.getItem('token');
 
-    const navigate = useNavigate(); 
-
+    useEffect (() => {if (token === 'undefined') navigate('/')}, [navigate, token])
 
     const{ data, isLoading, isError, error } = useQuery({
         queryKey:['getAllItems'],
@@ -18,8 +20,6 @@ export const MainPage = () => {
             });
             const parseData = await fetching.json();
 
-            console.log(parseData.products);
-
             return parseData;
         }
     }
@@ -29,14 +29,12 @@ export const MainPage = () => {
 
 
     return(
-            <div className='container mainFrame'>
-                {data.products.map(card =>
-                    <div className="productCard" key = {card._id}>
-                        <img src={card.pictures} alt="pucture" />
-                        <h2>{card.name}</h2>
-                        <p>likes: {card.likes.length}</p>
-                        <button onClick={() => navigate('/detail')}>Подробнее</button>
-                    </div>)}
-                    
+        <>
+                <div className="mainWrapper">
+                    {data.products.map(card =>
+                        <ProductCard key = {card._id} card={card}/>
+                    )} 
             </div>   
+        </>
+                 
     )}

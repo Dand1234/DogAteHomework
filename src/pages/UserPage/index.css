@@ -17,16 +17,30 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.userInfo button {
-    width: 200px;
-    height: 20px;
-    background-color: rgb(219, 129, 19);
-    border-radius: 15px;
-    margin: 30px;
-}
-
 .userInfo img {
     width: 400px;
     border-radius: 15px;
     margin: 20px;
+}
+
+.userInfo p {
+    width:max-content;
+    background-color: darkgoldenrod;
+    border-color: rgb(224, 174, 45);
+    border-radius: 10px;
+    border-width: 3px;
+}
+
+.buttonSection {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+.buttonSection button {
+    width: 200px;
+    height: 60px;
+    background-color: darkgoldenrod;
+    border-radius: 15px;
+    margin: 30px;
+    margin: 50px;
 }

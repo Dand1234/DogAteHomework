@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
 
-export const DetailProdPage = () => {
+export const DetailProdPage = (id) => {
 
     const token = localStorage.getItem('token')
-    
-    const {data:product, isLoading, isError, error} = useQuery({
+
+    const {data:productFetch, isLoading, isError, error} = useQuery({
         queryKey: ['DetailProdQuery'],
         queryFn: async (id) => {
             const fetching = await fetch(`https://api.react-learning.ru/products/${id}`,{
@@ -24,10 +24,12 @@ export const DetailProdPage = () => {
         } 
     })
     
+
+
     return(
 
         <>
-            <h1>{product.name}</h1>
+            <h1>Страница {productFetch.name}</h1>
         </>
     )
 }

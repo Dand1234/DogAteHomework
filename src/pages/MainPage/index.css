@@ -1,21 +1,7 @@
-.mainFrame {
+.mainWrapper{
     display: flex;
-    
-}
-
-.productCard {
-    height: 350px;
-    width: 300px;
-    background-color: rgb(221, 171, 54);
-    border-radius: 15px;
-    padding: 10px;
-    margin: 20px
-}
-
-.productCard img {
-    width: 100px;
-    height: 100px;
-    border-radius: 15px;
-    position: relative;
-    
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 5px;
+    justify-content: center;
 }

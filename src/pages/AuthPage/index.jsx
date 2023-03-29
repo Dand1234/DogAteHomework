@@ -1,12 +1,11 @@
 import { Formik } from "formik";
 import * as yup from 'yup';
-import { Link, Navigate } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from '@tanstack/react-query';
-import { useState } from "react";
 
 
 export const AuthPage = () => {
+    const navigate = useNavigate();
 
     const validationsSchema = yup.object().shape({
         email: yup.string().email('Введите верный email').required('Укажите Ваш e-mail!'),
@@ -18,14 +17,6 @@ export const AuthPage = () => {
         password: ''
     }
 
-    const onSubmit = (values) => {
-      localStorage.setItem('email',`${values.email}`)
-      localStorage.setItem('password',`${values.password}`)
-      authQuery(values);
-    }
-
-
-    const navigate = useNavigate();
 
     const {mutateAsync:authQuery, isLoading, isError, error } = useMutation({
       mutationKey: ['authQuery'],
@@ -54,6 +45,10 @@ export const AuthPage = () => {
     if (isLoading) return <h2>Loading in progress</h2>
 
     if (isError) return <h2>Ошибка:{error.message}</h2>
+
+    const onSubmit = (values) => {
+      authQuery(values);
+    }
 
     return(
     <>
