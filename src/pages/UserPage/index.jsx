@@ -5,6 +5,7 @@ import { UserChangeNameOrAboutMdl } from "../../components/Modal/UserChangeMdl/U
 import { UserChangeAvatarMdl } from "../../components/Modal/UserChangeMdl/UserChangeAvatarMdl"
 import { useNavigate } from "react-router-dom";
 import './index.css'
+import { Spinner } from "../../components/Spinner/Spinner";
 
 
 export const UserPage = () => {
@@ -40,9 +41,7 @@ export const UserPage = () => {
         }
     });
 
-    if (isLoading){
-        return <p>Загрузка</p>
-    }
+    if(isLoading) return <Spinner />
 
     if (isError) {
         return <p>Что-то пошло не так: {error.message}</p>

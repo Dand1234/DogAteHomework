@@ -18,7 +18,7 @@ export const AuthPage = () => {
     }
 
 
-    const {mutateAsync:authQuery, isLoading, isError, error } = useMutation({
+    const {mutateAsync:authQuery, isError, error } = useMutation({
       mutationKey: ['authQuery'],
       mutationFn: async (authData) => {
         
@@ -41,8 +41,6 @@ export const AuthPage = () => {
     }
 
   })
-
-    if (isLoading) return <h2>Loading in progress</h2>
 
     if (isError) return <h2>Ошибка:{error.message}</h2>
 

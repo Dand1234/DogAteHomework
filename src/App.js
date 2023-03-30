@@ -21,7 +21,7 @@ export function App() {
           <Route path='reg' element={<RegPage />} />
           <Route path='user' element={<UserPage/>} />
           <Route path='cart' element={<CartPage />} />
-          <Route path='detail' element={<DetailProdPage />} />
+          <Route path='main/:id' element={<DetailProdPage />} />
         </Route>
       </Routes>
     </div>

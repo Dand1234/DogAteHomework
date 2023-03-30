@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import './index.css'
 import { ProductCard } from "../../components/ProductCard";
+import { Spinner } from "../../components/Spinner/Spinner";
 
 export const MainPage = () => {
     const navigate = useNavigate(); 
@@ -25,7 +26,7 @@ export const MainPage = () => {
     }
     )
 
-    if(isLoading) return <h2>Loading</h2>
+    if(isLoading) return <Spinner />
 
 
     return(
