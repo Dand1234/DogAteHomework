@@ -6,7 +6,7 @@ import { RegPage } from './pages/RegPage/index';
 import { UserPage } from './pages/UserPage/index';
 import { CartPage } from './pages/CartPage/index';
 import { StartPage } from './pages/StartPage/index';
-import { DetailProdPage } from './pages/DetailProdPage/index';
+import { DetailProductPage } from './pages/DetailProductPage/index';
 import './App.css';
 
 export function App() {
@@ -21,7 +21,7 @@ export function App() {
           <Route path='reg' element={<RegPage />} />
           <Route path='user' element={<UserPage/>} />
           <Route path='cart' element={<CartPage />} />
-          <Route path='main/:id' element={<DetailProdPage />} />
+          <Route path='main/:id' element={<DetailProductPage />} />
         </Route>
       </Routes>
     </div>

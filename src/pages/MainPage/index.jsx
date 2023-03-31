@@ -10,7 +10,9 @@ export const MainPage = () => {
 
     const token = localStorage.getItem('token');
 
-    useEffect (() => {if (token === 'undefined') navigate('/')}, [navigate, token])
+    useEffect (() => {
+        if (!token) navigate('/')
+        }, [navigate, token])
 
     const{ data, isLoading, isError, error } = useQuery({
         queryKey:['getAllItems'],
@@ -33,7 +35,7 @@ export const MainPage = () => {
         <>
                 <div className="mainWrapper">
                     {data.products.map(card =>
-                        <ProductCard key = {card._id} card={card}/>
+                        <ProductCard key={card._id} card={card}/>
                     )} 
             </div>   
         </>

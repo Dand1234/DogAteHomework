@@ -2,11 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
-import './index.css'
+import './index.css';
+import { useEffect } from "react";
 
 export const RegPage = () => {
 
+    const token = localStorage.getItem('token');
     const navigate = useNavigate();
+
+    useEffect (() => {
+      if (token) navigate('/main')
+      },[navigate, token])
 
     const validationsSchema = yup.object().shape({
         email: yup.string().email('Введите верный email').required('Укажите Ваш e-mail!'),

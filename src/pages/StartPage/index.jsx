@@ -8,7 +8,9 @@ export const StartPage = () => {
 
     const token = localStorage.getItem('token');
 
-    useEffect (() => {if (token !== null) navigate('/main')},[navigate, token])
+    useEffect (() => {
+        if (token) navigate('/main')
+        },[navigate, token])
 
     return(
         <>

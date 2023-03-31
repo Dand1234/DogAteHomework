@@ -1,11 +1,19 @@
 import { Formik } from "formik";
+import { useEffect } from "react";
 import * as yup from 'yup';
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from '@tanstack/react-query';
 import './index.css'
 
 export const AuthPage = () => {
+
     const navigate = useNavigate();
+
+    const token = localStorage.getItem('token');
+
+    useEffect (() => {
+      if (token) navigate('/main')
+      },[navigate, token])
 
     const validationsSchema = yup.object().shape({
         email: yup.string().email('Введите верный email').required('Укажите Ваш e-mail!'),
@@ -33,11 +41,9 @@ export const AuthPage = () => {
       );
         const result = await query.json();
 
-        localStorage.setItem('token',`${result.token}`)
+        localStorage.setItem('token', `${result.token}`)
 
-        navigate('../main')
-        
-        return result;
+        return navigate('/main')   
     }
 
   })
@@ -45,6 +51,7 @@ export const AuthPage = () => {
     if (isError) return <h2>Ошибка:{error.message}</h2>
 
     const onSubmit = (values) => {
+      console.log(values);
       authQuery(values);
     }
 

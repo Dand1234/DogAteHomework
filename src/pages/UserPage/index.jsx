@@ -16,7 +16,9 @@ export const UserPage = () => {
 
     const token = localStorage.getItem('token');
 
-    useEffect (() => {if (token === 'undefined') navigate('/')}, [navigate, token])
+    useEffect (() => {
+        if (!token) navigate('/')
+        }, [navigate, token])
 
     const modalOpenHandler = (element) => {
         setModalState(true);
