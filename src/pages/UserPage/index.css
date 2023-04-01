@@ -42,3 +42,12 @@
     border-radius: 15px;
     margin: 30px;
 }
+
+.buttonSection__button-exit {
+    width: 200px;
+    height: 60px;
+    background-color: darkgoldenrod;
+    border-radius: 15px;
+    margin: 30px;
+    background-color: red;
+}

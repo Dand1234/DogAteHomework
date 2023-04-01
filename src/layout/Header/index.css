@@ -12,18 +12,10 @@
     margin-left: auto;
 }
 
-.header__icon-main {
-    position: relative;
-    bottom: 50px;
-    width: 200px;
-    margin-right: auto;
-}
-
 .header__shopName {
     position: relative;
     font-size: 40px;
     font-weight: 500;
     color: bisque;
-    right: 80px;
-    top: 30px;
+    text-decoration: none;
 }

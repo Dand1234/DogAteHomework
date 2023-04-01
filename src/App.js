@@ -16,12 +16,12 @@ export function App() {
       <Routes>
         <Route path='/' element={<Layout />}> 
           <Route index element={<StartPage />} />       
-          <Route path='main' element={<MainPage />} />
+          <Route path='products' element={<MainPage />} />
           <Route path='auth' element={<AuthPage />} />
           <Route path='reg' element={<RegPage />} />
           <Route path='user' element={<UserPage/>} />
           <Route path='cart' element={<CartPage />} />
-          <Route path='main/:id' element={<DetailProductPage />} />
+          <Route path='products/:id' element={<DetailProductPage />} />
         </Route>
       </Routes>
     </div>

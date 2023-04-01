@@ -7,11 +7,11 @@ import { useEffect } from "react";
 
 export const RegPage = () => {
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('reduxState');
     const navigate = useNavigate();
 
     useEffect (() => {
-      if (token) navigate('/main')
+      if (token) navigate('/products')
       },[navigate, token])
 
     const validationsSchema = yup.object().shape({

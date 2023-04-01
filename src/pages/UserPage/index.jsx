@@ -1,29 +1,37 @@
 import { useQuery } from "@tanstack/react-query";
 import { Modal } from '../../components/Modal/Modal';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import { UserChangeNameOrAboutMdl } from "../../components/Modal/UserChangeMdl/UserChangeNameOrAboutMdl"
 import { UserChangeAvatarMdl } from "../../components/Modal/UserChangeMdl/UserChangeAvatarMdl"
 import { useNavigate } from "react-router-dom";
 import './index.css'
 import { Spinner } from "../../components/Spinner/Spinner";
+import { useAuth } from "../../hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { removeUser } from '../../redux/slices/user';
+import { clearCart } from '../../redux/slices/cart';
 
 
 export const UserPage = () => {
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [modalState, setModalState] = useState(false);
     const [modalVisual, setModalVisual] = useState();
-    const navigate = useNavigate();
 
-    const token = localStorage.getItem('token');
-
-    useEffect (() => {
-        if (!token) navigate('/')
-        }, [navigate, token])
+    const { token } = useAuth()
 
     const modalOpenHandler = (element) => {
         setModalState(true);
         setModalVisual(element)
     }
+
+    const handleExit = () => {
+        localStorage.clear();
+        navigate('/auth');
+        dispatch(removeUser());
+        dispatch(clearCart());
+      
+      }
     
     const {data, isLoading, isError, error} = useQuery({
         queryKey: ['gettingUserData'],
@@ -64,9 +72,9 @@ export const UserPage = () => {
                     <button onClick = {() => modalOpenHandler(<UserChangeNameOrAboutMdl />)} className='buttonSection__button'
                         >Изменить имя или описание</button>         
                     <button onClick={() => navigate('..')} className='buttonSection__button'>Назад</button>
+                    <button onClick={handleExit} className='buttonSection__button-exit'>Выход</button>
             </div>
             <Modal active={modalState} setActive={setModalState} children={modalVisual}/> 
-            {/* не совсем понял, почему нельзя передавать тело модалки через стейт (и, если честно, как это по другому реализовать) */}
         </>
     )
 }

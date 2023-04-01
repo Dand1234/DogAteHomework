@@ -1,32 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import './index.css'
 import { ProductCard } from "../../components/ProductCard";
 import { Spinner } from "../../components/Spinner/Spinner";
+import { useAuth } from '../../hooks/useAuth'
+import { useSelector } from "react-redux";
 
 export const MainPage = () => {
-    const navigate = useNavigate(); 
 
-    const token = localStorage.getItem('token');
-
-    useEffect (() => {
-        if (!token) navigate('/')
-        }, [navigate, token])
+    const { token } = useAuth();
+    const { search } = useSelector(state => state.search)
 
     const{ data, isLoading, isError, error } = useQuery({
-        queryKey:['getAllItems'],
+        queryKey:['getAllItems', search],
         queryFn: async () => {
-            const fetching = await fetch ('https://api.react-learning.ru/products', {
-                method:'GET',
-                headers:{Authorization: `Bearer ${token}`}
-            });
-            const parseData = await fetching.json();
+            const query = await fetch(`https://api.react-learning.ru/products/search?query=${search}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              })
+
+            const parseData = await query.json();
 
             return parseData;
         }
-    }
-    )
+    })
 
     if(isLoading) return <Spinner />
 
@@ -34,8 +31,8 @@ export const MainPage = () => {
     return(
         <>
                 <div className="mainWrapper">
-                    {data.products.map(card =>
-                        <ProductCard key={card._id} card={card}/>
+                    {data.map(card =>
+                     <ProductCard key={card._id} card={card}/>
                     )} 
             </div>   
         </>

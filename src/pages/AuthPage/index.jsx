@@ -3,16 +3,19 @@ import { useEffect } from "react";
 import * as yup from 'yup';
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from '@tanstack/react-query';
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/slices/user";
 import './index.css'
 
 export const AuthPage = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('reduxState');
 
     useEffect (() => {
-      if (token) navigate('/main')
+      if (token.token) navigate('/products')
       },[navigate, token])
 
     const validationsSchema = yup.object().shape({
@@ -39,11 +42,15 @@ export const AuthPage = () => {
                   body: JSON.stringify(authData),
               }
       );
+
         const result = await query.json();
 
-        localStorage.setItem('token', `${result.token}`)
+        dispatch(setUser({
+          ...result.data,
+          token: result.token
+        }))
 
-        return navigate('/main')   
+        return navigate('/products')   
     }
 
   })
@@ -51,7 +58,6 @@ export const AuthPage = () => {
     if (isError) return <h2>Ошибка:{error.message}</h2>
 
     const onSubmit = (values) => {
-      console.log(values);
       authQuery(values);
     }
 

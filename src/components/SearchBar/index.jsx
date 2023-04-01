@@ -1,67 +1,45 @@
-import * as yup from 'yup';
-import { Formik } from 'formik';
-import { useMutation } from '@tanstack/react-query';
-import './index.css';
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useDebounce } from "../../hooks/useDebounce";
+import { changeSearch } from "../../redux/slices/search";
+import './index.css'
 
-export const SearchBar = (token) => {
+export const SearchBar = () => {
+    const [searchParams] = useSearchParams();
+    const [search, setSearch] = useState(() => {return searchParams.get('search') ? searchParams.get('search') : ''});
+    const dispatch = useDispatch();
+    const debounceValue = useDebounce(search, 200);
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        dispatch(changeSearch(debounceValue))
+    }, [dispatch, debounceValue])
 
-    const validationsSchema = yup.object().shape({
-        search: yup.string()
-      })
+    const handleChange = (event) => {
+        event.preventDefault()
+        const searchValue = event.target.value;
+        setSearch(searchValue)
+        if (searchValue) {
+        return navigate({
+            pathname: '/products',
+            search: `?search=${searchValue}`,
+        });
+        }
 
-      const initialValues = {
-        search: '',
+        navigate({
+        pathname: '/products',
+        });
     }
 
-    const {mutate:searchQuery} = useMutation({
-        mutationKey:['searchQuery'],
-        mutationFn: async (request) => {
-            const fetching = await fetch (`https://api.react-learning.ru/products/search?query=:request`,{
-                method: 'GET',
-                header:{
-                    Authorization: `Bearer ${token}`
-                },
-            })
-            const result = await fetching.json();
-
-            if (result === []) return <h2>По вашему запросу ничего не найдено!</h2>
-
-            return result;
-        }
-    })
-
-    const onSubmit = (values) =>{searchQuery(values)}
-
-
     return(
-        <Formik
-        initialValues={initialValues}
-        validateOnBlur
-        onSubmit={onSubmit}
-        validationSchema={validationsSchema}
-    >
-        {({ values, handleChange, handleBlur, handleSubmit }) => (
-        <div className='searchBar'>
-
-            <p>
+        <div className="searchBar">
             <input
-                className='searchBar__input'
-                type='search'
-                name='search'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                placeholder='Что вы хотите найти?'
-            />
-            </p>
-
-            <button
-            onClick={handleSubmit}
-            type='submit'
-            className='searchBar__button'
-            >Поиск</button>
+            className="searchBar__input"
+            placeholder='Что вы хотите найти?'
+            type="text"
+            value={search}
+            onChange={handleChange} />
         </div>
-        )}
-    </Formik>
     )
 }

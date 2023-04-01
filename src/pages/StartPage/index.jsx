@@ -6,10 +6,10 @@ export const StartPage = () => {
 
     const navigate = useNavigate();
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('reduxState');
 
     useEffect (() => {
-        if (token) navigate('/main')
+        if (token) navigate('/products')
         },[navigate, token])
 
     return(
