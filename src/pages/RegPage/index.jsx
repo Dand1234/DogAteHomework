@@ -4,10 +4,11 @@ import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
 import './index.css';
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export const RegPage = () => {
 
-    const token = localStorage.getItem('reduxState');
+    const { token } = useSelector(state => state.user)
     const navigate = useNavigate();
 
     useEffect (() => {
@@ -116,7 +117,6 @@ export const RegPage = () => {
             </div>
           )}
         </Formik>
-        <button onClick={() => navigate('..')} className="button">Назад</button>
         </>
     )
 }

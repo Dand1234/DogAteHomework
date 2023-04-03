@@ -1,0 +1,97 @@
+.button {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 30px;
+    background-color: rgb(203, 74, 31);
+    position: absolute;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.emptyCart {
+    width: 100%;
+    height: 100vh;
+    font-weight: 700;
+    font-size: 60px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.emptyCart_link {
+    font-size: 30px;
+    text-decoration: none;
+    color:rgb(203, 74, 31)
+}
+
+.numberSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20px;
+    min-width: 110px;
+    background-color: rgb(203, 74, 31);
+    color: aliceblue;
+    border-radius: 15px;
+}
+
+.listItem {
+    min-height: 50px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 2px;
+    border-style: double;
+}
+
+.countDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.productImg {
+    width: 90px;
+    border-radius: 15px;
+    border-width: 3px;
+    border-style: dashed;
+    border-color: rgb(203, 74, 31);
+}
+
+.cleanAll {
+    width: 150px;
+    height: 50px;
+    background-color:rgb(203, 74, 31);
+    color: aliceblue;
+    border-radius: 15px;
+    margin-top: 8px;
+}
+
+.headerOfCart {
+    font-size: 60px;
+}
+
+.deleteAndCountSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin: 10px;
+    padding: 5px;
+}
+
+.realCart {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 40px;
+    background-color: rgb(203, 74, 31);
+    border-radius: 15px;
+}

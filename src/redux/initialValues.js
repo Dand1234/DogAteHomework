@@ -28,3 +28,5 @@ export const initialSearchState = {
  }
   
 export const initialCartState = []
+
+export const initialFavouriteState = []

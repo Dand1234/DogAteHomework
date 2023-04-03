@@ -1,9 +1,9 @@
 import { Formik } from "formik";
 import { useEffect } from "react";
 import * as yup from 'yup';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from '@tanstack/react-query';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/slices/user";
 import './index.css'
 
@@ -12,10 +12,10 @@ export const AuthPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const token = localStorage.getItem('reduxState');
+    const { token } = useSelector(state => state.user)
 
     useEffect (() => {
-      if (token.token) navigate('/products')
+      if (token) navigate('/products')
       },[navigate, token])
 
     const validationsSchema = yup.object().shape({
@@ -106,7 +106,6 @@ export const AuthPage = () => {
           </div>
         )}
       </Formik>
-        <Link to='..'>Назад</Link>
     </>
     )
 }

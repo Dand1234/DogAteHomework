@@ -1,13 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import { Modal } from '../../components/Modal/Modal';
 import { useState } from 'react';
 import { UserChangeNameOrAboutMdl } from "../../components/Modal/UserChangeMdl/UserChangeNameOrAboutMdl"
 import { UserChangeAvatarMdl } from "../../components/Modal/UserChangeMdl/UserChangeAvatarMdl"
 import { useNavigate } from "react-router-dom";
 import './index.css'
-import { Spinner } from "../../components/Spinner/Spinner";
-import { useAuth } from "../../hooks/useAuth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from '../../redux/slices/user';
 import { clearCart } from '../../redux/slices/cart';
 
@@ -15,66 +12,37 @@ import { clearCart } from '../../redux/slices/cart';
 export const UserPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [modalState, setModalState] = useState(false);
-    const [modalVisual, setModalVisual] = useState();
-
-    const { token } = useAuth()
-
-    const modalOpenHandler = (element) => {
-        setModalState(true);
-        setModalVisual(element)
-    }
+    const [isChangeNameOpen, setIsChangeNameOpen] = useState(false);
+    const [isChangeAvatarOpen, setIsChangeAvatarOpen] = useState(false);
 
     const handleExit = () => {
-        localStorage.clear();
-        navigate('/auth');
+        navigate('/');
         dispatch(removeUser());
         dispatch(clearCart());
       
       }
     
-    const {data, isLoading, isError, error} = useQuery({
-        queryKey: ['gettingUserData'],
-        queryFn: async () => {
-           const fetching = await fetch('https://api.react-learning.ru/v2/9-gr/users/me',{
-                method:'GET',
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                  },
-            })
-
-            const result = await fetching.json();
-            
-            return result;
-        }
-    });
-
-    if(isLoading) return <Spinner />
-
-    if (isError) {
-        return <p>Что-то пошло не так: {error.message}</p>
-    }
+    const userData = useSelector(state => state.user)
 
     return (
         <>
             <div className="userInfo">
                 <h1>Описание аккаунта</h1>
-                <p>Ваше имя: {data.name} </p>
-                <p>Ваше описание: {data.about}</p>
-                <p>Ваше группа: {data.group}</p>
-                <img src = {data.avatar} alt='Фотокарточка'/>
+                <p>Ваше имя: {userData.name} </p>
+                <p>Ваше описание: {userData.about}</p>
+                <p>Ваше группа: {userData.group}</p>
+                <img src = {userData.avatar} alt='Фотокарточка'/>
             </div>
             <div className="buttonSection">            
-                    <button onClick = {() => modalOpenHandler(<UserChangeAvatarMdl />)} className='buttonSection__button'
+                    <button onClick = {() => setIsChangeAvatarOpen(true)} className='buttonSection__button'
                         >Изменить фото</button>
-                    <button onClick = {() => modalOpenHandler(<UserChangeNameOrAboutMdl />)} className='buttonSection__button'
+                    <button onClick = {() => setIsChangeNameOpen(true)} className='buttonSection__button'
                         >Изменить имя или описание</button>         
                     <button onClick={() => navigate('..')} className='buttonSection__button'>Назад</button>
                     <button onClick={handleExit} className='buttonSection__button-exit'>Выход</button>
             </div>
-            <Modal active={modalState} setActive={setModalState} children={modalVisual}/> 
+            <Modal active={isChangeAvatarOpen} setActive={setIsChangeAvatarOpen}> {<UserChangeAvatarMdl />} </Modal>
+            <Modal active={isChangeNameOpen} setActive={setIsChangeNameOpen}> {<UserChangeNameOrAboutMdl />} </Modal>
         </>
     )
 }

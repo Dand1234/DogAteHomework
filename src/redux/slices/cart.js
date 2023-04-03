@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
       return initialCartState
     },
     deleteFromCart: (state, action) => {
-      return state.search(el => el.id !== action.payload)
+      return state.filter(el => el.id !== action.payload)
     },
     incrementProduct: (state, action) => {
       const productInCart = state.find(el => el.id === action.payload)

@@ -4,13 +4,14 @@ import { ProductCard } from "../../components/ProductCard";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { useAuth } from '../../hooks/useAuth'
 import { useSelector } from "react-redux";
+import { EmptySearch } from "../../components/EmptySearch";
 
 export const MainPage = () => {
 
     const { token } = useAuth();
     const { search } = useSelector(state => state.search)
 
-    const{ data, isLoading, isError, error } = useQuery({
+    const{ data:products, isLoading } = useQuery({
         queryKey:['getAllItems', search],
         queryFn: async () => {
             const query = await fetch(`https://api.react-learning.ru/products/search?query=${search}`, {
@@ -25,16 +26,15 @@ export const MainPage = () => {
         }
     })
 
-    if(isLoading) return <Spinner />
+    if (isLoading) return <Spinner />
 
+    if (products.length === 0) return (<EmptySearch />)
 
     return(
-        <>
-                <div className="mainWrapper">
-                    {data.map(card =>
-                     <ProductCard key={card._id} card={card}/>
-                    )} 
+            <div className="mainWrapper">
+                {products.map(card =>
+                    <ProductCard key={card._id} card={card}/>
+                )} 
             </div>   
-        </>
                  
     )}

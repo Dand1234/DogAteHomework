@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux';
 import '../StartPage/index.css'
 
 export const StartPage = () => {
 
     const navigate = useNavigate();
-
-    const token = localStorage.getItem('reduxState');
+    const { token } = useSelector(state => state.user)
 
     useEffect (() => {
         if (token) navigate('/products')

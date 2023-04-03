@@ -1,16 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth"
 
-export const DetailProductPage = (id) => {
+export const DetailProductPage = () => {
+    
+    const id = useParams();
 
-    const token = localStorage.getItem('token')
-
-    const navigate = useNavigate();
-
-    useEffect (() => {
-        if (!token) navigate('/')
-        }, [navigate, token])
+    const { token } = useAuth()
 
     const {data:productFetch, isLoading, isError, error} = useQuery({
         queryKey: ['DetailProdQuery'],

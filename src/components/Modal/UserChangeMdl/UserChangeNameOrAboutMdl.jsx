@@ -1,8 +1,11 @@
 import { Formik } from "formik";
 import * as yup from 'yup';
 import { useMutation } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 
 export const UserChangeNameOrAboutMdl = () => {
+
+    const { name,about } = useSelector (state => state.user)
 
     const validationsSchema = yup.object().shape({
         name: yup.string(),
@@ -10,15 +13,15 @@ export const UserChangeNameOrAboutMdl = () => {
       })
 
     const initialValues = {
-        name: '',
-        about:'',
+        name: `${name}`,
+        about: `${about}`
     }
 
     const onSubmit = (values) => {
       changeNameOrAbout(values)
     }
 
-    const token = localStorage.getItem('token');
+    const { token } = useSelector(state => state.user)
 
   
       const {mutateAsync:changeNameOrAbout, isError, error} = useMutation({

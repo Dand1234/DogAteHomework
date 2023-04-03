@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 export const Modal = ({active, setActive, children}) => {
 
-    const modal = document.getElementById('modal')
+    if (!active) return null
 
     return(
         ReactDOM.createPortal(            
@@ -11,7 +11,7 @@ export const Modal = ({active, setActive, children}) => {
                 <div className = 'modal__content' onClick={el => el.stopPropagation()}>
                     {children}
                 </div>
-            </div>, modal)
+            </div>, document.getElementById('modal'))
 
 
     )

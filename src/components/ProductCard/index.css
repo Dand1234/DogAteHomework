@@ -6,7 +6,10 @@
     border-width:  thick;
     border-color: black;
     padding: 10px;
-    margin: 20px
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .productCard__img {
@@ -22,10 +25,14 @@
 }
 
 .productCard__button {
-    width: 100px;
+    min-width: 100px;
     height: 30px;
     background-color: rgb(243, 205, 107);
     border-radius: 15px;
-    margin: 30px;
-    margin: 50px;
+    margin: 10px;
+}
+
+.likeSection {
+    display: flex;
+    flex-direction: row;
 }

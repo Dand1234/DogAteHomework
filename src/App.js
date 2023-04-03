@@ -8,6 +8,7 @@ import { CartPage } from './pages/CartPage/index';
 import { StartPage } from './pages/StartPage/index';
 import { DetailProductPage } from './pages/DetailProductPage/index';
 import './App.css';
+import { EmptyPage } from './pages/EmptyPage';
 
 export function App() {
 
@@ -22,6 +23,7 @@ export function App() {
           <Route path='user' element={<UserPage/>} />
           <Route path='cart' element={<CartPage />} />
           <Route path='products/:id' element={<DetailProductPage />} />
+          <Route path='*' element={<EmptyPage/>} />
         </Route>
       </Routes>
     </div>

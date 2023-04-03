@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query'
+import { useSelector } from "react-redux";
 
 export const UserChangeAvatarMdl = () => {
 
@@ -17,7 +18,7 @@ export const UserChangeAvatarMdl = () => {
 
     }
 
-    const token = localStorage.getItem('token');
+    const { token } = useSelector(state => state.user);
 
     const {mutateAsync:changeAvatar, isError, error} = useMutation({
         mustationKey: ['changeAvatar'],
