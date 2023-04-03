@@ -1,5 +1,5 @@
 .productCard {
-    height: 400px;
+    min-height: 400px;
     width: 300px;
     background-color: rgb(248, 220, 153);
     border-radius: 15px;

@@ -25,6 +25,9 @@ export const DetailProductPage = () => {
 
             const result = await query.json();
 
+            if (result.status > 399 && result.status < 500 ) throw new Error ('Повторите попытку регистрации');
+            else if (result.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже'); 
+
             return result;
         } 
     })

@@ -23,7 +23,7 @@ export const UserChangeAvatarMdl = () => {
     const {mutateAsync:changeAvatar, isError, error} = useMutation({
         mustationKey: ['changeAvatar'],
         mutationFn: async (info) => {
-            const fetching = await fetch ("https://api.react-learning.ru/v2/9-gr/users/me/avatar",{
+            const query = await fetch ("https://api.react-learning.ru/v2/9-gr/users/me/avatar",{
                 method: 'PATCH',
                 headers:{
                     Accept: "application/json",
@@ -34,9 +34,15 @@ export const UserChangeAvatarMdl = () => {
 
             
             })
-            return fetching;
+
+            if (query.status > 399 && query.status < 500 ) throw new Error ('Повторите попытку регистрации');
+            else if (query.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже'); 
+
+            return query;
           }
         })
+
+    if (isError) return <h2>Ошибка:{error.message}</h2>
 
 
     return(

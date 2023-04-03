@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { Spinner } from "../../components/Spinner/Spinner"
 import { useAuth } from "../../hooks/useAuth"
 import { deleteFromCart, dicrementProduct, incrementProduct, clearCart, changeCheck } from "../../redux/slices/cart"
 import './index.css'
@@ -116,7 +117,7 @@ export const CartPage = () => {
   })
 
   if (!cart.length) return <NoProductsInCart />
-  if (isLoading) return <p>Загрузка...</p>
+  if (isLoading) return <Spinner />
 
   return (
     <>

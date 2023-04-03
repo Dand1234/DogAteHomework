@@ -27,7 +27,7 @@ export const UserChangeNameOrAboutMdl = () => {
       const {mutateAsync:changeNameOrAbout, isError, error} = useMutation({
           mustationKey: ['changeNameOrAbout'],
           mutationFn: async (info) => {
-              const fetching = await fetch ("https://api.react-learning.ru/v2/9-gr/users/me",{
+              const query = await fetch ("https://api.react-learning.ru/v2/9-gr/users/me",{
                   method: 'PATCH',
                   headers:{
                       Accept: "application/json",
@@ -36,9 +36,16 @@ export const UserChangeNameOrAboutMdl = () => {
                     },
                     body: JSON.stringify(info),
               })
+
+              if (query.status > 399 && query.status < 500 ) throw new Error ('Повторите попытку регистрации');
+              else if (query.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже'); 
+
+              return query;
           }
       
       })
+
+      if (isError) return <h2>Ошибка:{error.message}</h2>
 
 
     return(

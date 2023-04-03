@@ -31,7 +31,7 @@ export const RegPage = () => {
     const {mutateAsync:regQuery, isError, error } = useMutation({
         mutationKey: ['registrationQuery'],
         mutationFn: async (regData) => {
-            const fetching = await fetch(
+            const query = await fetch(
                 'https://api.react-learning.ru/signup',
                 {
                     method: 'POST',
@@ -43,7 +43,7 @@ export const RegPage = () => {
                 },
         )
 
-            const res = await fetching.json();
+            const res = await query.json();
 
               if (res.status === 409 ) throw new Error ('Пользователь с указанным E-mail уже существует!');
               else if (res.status > 399 && res.status < 500 ) throw new Error ('Повторите попытку регистрации');

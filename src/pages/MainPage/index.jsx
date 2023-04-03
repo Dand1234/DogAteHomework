@@ -22,6 +22,9 @@ export const MainPage = () => {
 
             const parseData = await query.json();
 
+            if (parseData.status > 399 && parseData.status < 500 ) throw new Error ('Повторите попытку регистрации');
+            else if (parseData.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже');  
+
             return parseData;
         }
     })
