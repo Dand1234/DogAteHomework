@@ -8,12 +8,14 @@ export const favSlice = createSlice({
         addToFav: (state, action) => {
             const productInFav = state.find(el => el.id === action.payload);
 
-            if (productInFav) return null;
+            if (productInFav) return state;
 
             state.push({
                 id:action.payload
             })
+            console.log(state.favourite)
 
+            return state
         },
 
         deleteFromFav: (state, action) => {

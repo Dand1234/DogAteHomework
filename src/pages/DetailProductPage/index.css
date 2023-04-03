@@ -1,0 +1,77 @@
+.detailProd{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.detailProd_img {
+    width: 300px;
+}
+
+.detailProd_Items {
+    display: flex;
+    width: 700px;
+    justify-content: space-around;
+    margin-left: 7px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.detailProd_ItemPrice {
+    display: flex;
+    justify-content: center;
+    border-style: dotted;
+    border-color: rgb(98, 98, 243);
+    background-color: brown;
+    color: aliceblue;
+    border-width: 2px;
+    min-width: 80px;
+    min-height: 35px;
+    border-radius: 10px;
+    margin-left: 15px;
+}
+
+.detailProd_ItemDescript {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    border-color: darkgoldenrod;
+    border-style: dashed;
+    border-width: 3px;
+    min-width: 300px;
+    min-height: 60px;
+    border-radius: 15px;
+    margin-left: 15px;
+}
+
+.detailProd_ItemAvaliable {
+    font-size: 25px;
+    font-weight: 600;
+    background-color: darkgoldenrod;
+    color: rgb(254, 254, 254);
+    margin-left: 15px;
+    border-radius: 15px;
+    min-width: 100px;
+    min-height: 20px;
+}
+
+.detailProd_likeSection {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    background-color: rgb(223, 97, 19);
+    min-width: 70px;
+    min-height: 30px;
+    border-radius: 15px;
+    color: aliceblue;
+}
+
+.detailProd__button {
+    min-width: 100px;
+    height: 30px;
+    background-color: rgb(243, 205, 107);
+    border-radius: 15px;
+    margin: 10px;
+}

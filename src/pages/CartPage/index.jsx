@@ -69,7 +69,7 @@ const ProductInCart = ({ product: { name, price, discount, _id, stock, pictures 
     <span className="numberSection">{count} штук</span>
     <div className="countDiv">
       <button
-        className="button"
+        className="buttonCart"
         onClick={() => dispatch(dicrementProduct(_id))}
       >
         -
@@ -78,7 +78,7 @@ const ProductInCart = ({ product: { name, price, discount, _id, stock, pictures 
         {totalPrice(count, price, discount)} р
       </span>
       <button
-        className="button"
+        className="buttonCart"
         disabled={count === stock}
         onClick={() => dispatch(incrementProduct(_id))}
       >
@@ -86,7 +86,7 @@ const ProductInCart = ({ product: { name, price, discount, _id, stock, pictures 
       </button>
     </div>
     <button
-      className="button"
+      className="buttonCart"
       onClick={() => dispatch(deleteFromCart(_id))}
     >
       X

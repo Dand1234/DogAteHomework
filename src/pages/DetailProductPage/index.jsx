@@ -1,39 +1,53 @@
 import { useQuery } from "@tanstack/react-query"
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth"
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { Spinner } from '../../components/Spinner/Spinner';
+import './index.css'
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/cart";
 
 export const DetailProductPage = () => {
-    
-    const id = useParams();
+    const { token } = useAuth();
+    const param = useParams();
+    const dispatch = useDispatch();
+    const productId = param.id;
 
-    const { token } = useAuth()
 
     const {data:productFetch, isLoading, isError, error} = useQuery({
         queryKey: ['DetailProdQuery'],
-        queryFn: async (id) => {
-            const fetching = await fetch(`https://api.react-learning.ru/products/${id}`,{
+        queryFn: async () => {
+            const query = await fetch(`https://api.react-learning.ru/products/${productId}`,{
                 method:'GET',
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
             });
 
-            const result = await fetching.json();
-
-            if (result.status !== 'ok') {
-                throw new Error('Что-то пошло не так')
-            }
+            const result = await query.json();
 
             return result;
         } 
     })
+
+    if (isLoading) return <Spinner />
+
+    if (isError) return <h1>Error:{error.message}</h1>
+
+    console.log(productFetch);
     
 
 
     return(
-
-        <>
-            <h1>Страница {productFetch.name}</h1>
-        </>
+        <div className="detailProd">
+            <h2>{productFetch.name}</h2>
+            <img src={productFetch.pictures} alt={productFetch.name} className='detailProd_img'/>
+            <div className="detailProd_Items">
+                <p className="detailProd_ItemPrice">{productFetch.price} р</p>
+                <p className="detailProd_ItemDescript">{productFetch.description}</p>
+                <p className="detailProd_ItemAvaliable">{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>
+            </div>
+            <span className="detailProd_likeSection">Нравится {productFetch.likes.length} людям</span>
+            <button onClick={() => dispatch(addToCart(productFetch._id))} className='detailProd__button'>В корзину</button>
+        </div>
     )
 }
