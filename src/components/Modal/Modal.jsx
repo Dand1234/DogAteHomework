@@ -1,4 +1,4 @@
-import './modal.css';
+import './index.css';
 import ReactDOM from 'react-dom'
 
 export const Modal = ({active, setActive, children}) => {

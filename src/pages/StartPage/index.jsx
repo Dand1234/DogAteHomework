@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import '../StartPage/index.css'
+import './index.css'
 
 export const StartPage = () => {
 

@@ -21,9 +21,13 @@ export const favSlice = createSlice({
         deleteFromFav: (state, action) => {
             return state.filter(el => el.id !== action.payload)
           },
+
+        cleanFav: () => {
+            return initialFavouriteState
+        }
       }
     })
 
-    export const { addToFav, deleteFromFav } = favSlice.actions
+    export const { addToFav, deleteFromFav, cleanFav } = favSlice.actions
 
     export const favReducer = favSlice.reducer

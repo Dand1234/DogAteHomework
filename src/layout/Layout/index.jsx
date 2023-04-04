@@ -1,5 +1,4 @@
 import { Outlet} from 'react-router-dom';
-import './index.css';
 import { Header } from '../Header/index';
 
 export const Layout = () => {

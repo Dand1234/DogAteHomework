@@ -1,30 +1,48 @@
 .header {
     width: 100%;
-    height: 14vh;
+    height: 100px;
     background-color: darkgoldenrod;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+.header__linkSection{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
 }
 
 .header__icon {
-    width: 15vh;
-    height: 15vh;
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+}
+
+.header__icon-star {
+    width: 80px;
+    height: 80px;
     margin-left: auto;
 }
 
 .header__shopName {
-    position: relative;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 500;
     color: bisque;
     text-decoration: none;
 }
 
 .cartFillment {
-    background-color:rgb(186, 93, 6);
-    border-radius: 50px;
-    width: 70px;
-    height: 70px;
-    color: rgb(255, 255, 255);
+    background-color:rgb(255, 255, 255);
+    border-radius: 30px;
+    min-width: 20px;
+    height: 20px;
+    color: rgb(0, 0, 0);
     text-decoration: none;
+    position: relative;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

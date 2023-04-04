@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 import { Spinner } from "../../components/Spinner/Spinner"
 import { useAuth } from "../../hooks/useAuth"
 import { deleteFromCart, dicrementProduct, incrementProduct, clearCart, changeCheck } from "../../redux/slices/cart"
 import './index.css'
+import { EmptyPage } from '../../components/EmptyPage/index'
 
 const totalPrice = (count, price, discount) => {
     return count * price * (1 - discount / 100)
@@ -44,13 +44,6 @@ const RealCart = () => {
       <p>Всего: <span>{totalPriceOfAll} руб.</span></p>
     </div>
   )
-}
-
-const NoProductsInCart = () => {
-  return <div className="emptyCart">
-    <p>Ничего нет в корзине</p>
-    <Link to={'/products'} className='emptyCart_link'>Вернуться к товарам</Link>
-  </div>
 }
 
 const ProductInCart = ({ product: { name, price, discount, _id, stock, pictures } }) => {
@@ -116,7 +109,7 @@ export const CartPage = () => {
     enabled: !!cart.length,
   })
 
-  if (!cart.length) return <NoProductsInCart />
+  if (!cart.length) return <EmptyPage />
   if (isLoading) return <Spinner />
 
   return (

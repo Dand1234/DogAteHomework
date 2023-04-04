@@ -1,0 +1,40 @@
+.favWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.favWrapper__Cards {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+}
+
+.favCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 400px;
+    width: 300px;
+    border: 1px solid;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.favCard__img {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    position: relative;
+    
+}
+
+.favCard_button {
+    min-width: 100px;
+    height: 30px;
+    background-color: rgb(243, 205, 107);
+    border-radius: 15px;
+    margin: 5px;
+}

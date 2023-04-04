@@ -14,7 +14,7 @@ export const DetailProductPage = () => {
 
 
     const {data:productFetch, isLoading, isError, error} = useQuery({
-        queryKey: ['DetailProdQuery'],
+        queryKey: ['DetailProductQuery'],
         queryFn: async () => {
             const query = await fetch(`https://api.react-learning.ru/products/${productId}`,{
                 method:'GET',

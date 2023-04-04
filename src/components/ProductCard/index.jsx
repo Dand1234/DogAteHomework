@@ -16,9 +16,12 @@ export const ProductCard = ({card}) => {
     }
 
     return (
-        <div className="productCard" key = {card._id}>
+        <div className="productCard">
             <img src={card.pictures} alt="pucture" className='productCard__img' />
             <h2>{card.name}</h2>
+            <ul>
+                <li>Цена:{card.price} р.</li>
+            </ul>
             <div className='likeSection'><img src={Like} alt='нрав' className='productCard__like'/><span> {card.likes.length}</span></div>
             <button 
                 onClick={() => {handleDetailNav(card._id)}} className='productCard__button'>

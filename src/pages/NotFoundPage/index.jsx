@@ -1,7 +1,7 @@
 import './index.css'
 import Dog from '../../assets/pics/Dog.jpg'
 
-export const EmptyPage = () => {
+export const NotFoundPage = () => {
     return ( 
         <div className='wrapperNotFound'>
             <h2 className="errorText">Такой страницы не существует!</h2>
