@@ -76,3 +76,10 @@
     border-radius: 15px;
     margin: 10px;
 }
+
+.comments {
+    max-height: 150px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    min-width: 300px;
+}

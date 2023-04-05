@@ -12,7 +12,6 @@ export const DetailProductPage = () => {
     const dispatch = useDispatch();
     const productId = param.id;
 
-
     const {data:productFetch, isLoading, isError, error} = useQuery({
         queryKey: ['DetailProductQuery'],
         queryFn: async () => {
@@ -36,10 +35,6 @@ export const DetailProductPage = () => {
 
     if (isError) return <h1>Error:{error.message}</h1>
 
-    console.log(productFetch);
-    
-
-
     return(
         <div className="detailProd">
             <h2>{productFetch.name}</h2>
@@ -50,6 +45,10 @@ export const DetailProductPage = () => {
                 <p className="detailProd_ItemAvaliable">{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>
             </div>
             <span className="detailProd_likeSection">Нравится {productFetch.likes.length} людям</span>
+            <p>Вот, что говорят люди!</p>
+            <div className="comments">
+                {productFetch.reviews.map(comment => <p key={comment._id}>{comment.text}</p>)}
+            </div>
             <button onClick={() => dispatch(addToCart(productFetch._id))} className='detailProd__button'>В корзину</button>
         </div>
     )
