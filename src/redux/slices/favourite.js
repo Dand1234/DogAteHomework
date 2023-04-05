@@ -13,7 +13,6 @@ export const favSlice = createSlice({
             state.push({
                 id:action.payload
             })
-            console.log(state.favourite)
 
             return state
         },

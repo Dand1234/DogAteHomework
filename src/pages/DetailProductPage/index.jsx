@@ -42,13 +42,15 @@ export const DetailProductPage = () => {
             <div className="detailProd_Items">
                 <p className="detailProd_ItemPrice">{productFetch.price} р</p>
                 <p className="detailProd_ItemDescript">{productFetch.description}</p>
+                <div className="comments"> 
+                    <p>Вот, что говорят люди!</p>
+                    <div className="comments_section">
+                        {productFetch.reviews.map(comment => <p key={comment._id}>- {comment.text}</p>)}
+                    </div>
+                </div>
                 <p className="detailProd_ItemAvaliable">{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>
             </div>
             <span className="detailProd_likeSection">Нравится {productFetch.likes.length} людям</span>
-            <p>Вот, что говорят люди!</p>
-            <div className="comments">
-                {productFetch.reviews.map(comment => <p key={comment._id}>{comment.text}</p>)}
-            </div>
             <button onClick={() => dispatch(addToCart(productFetch._id))} className='detailProd__button'>В корзину</button>
         </div>
     )

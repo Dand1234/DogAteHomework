@@ -6,6 +6,7 @@ import { Spinner } from "../../components/Spinner/Spinner";
 import { deleteFromFav, cleanFav } from "../../redux/slices/favourite";
 import './index.css'
 import { EmptyPage } from "../../components/EmptyPage";
+import { addToCart } from "../../redux/slices/cart";
 
 export const FavPage = () => {
     const { token } = useAuth();
@@ -25,6 +26,7 @@ export const FavPage = () => {
                 <span>Понравилось {product.likes.length} людям!</span>
                 <div>
                     <button onClick={() => dispatch(deleteFromFav(product._id))} className='favCard_button'>Убрать из избранного</button>
+                    <button onClick={() => dispatch(addToCart(product._id))} className='favCard_button'>Добавить в корзину</button>
                 </div>
             </div>
         )}
@@ -57,7 +59,7 @@ export const FavPage = () => {
             </div>
             <div>
                 <button onClick={() => dispatch(cleanFav())} className='favCard_button'>Отчистить избранное</button>
-                <button onClick={() => navigate('/product')} className='favCard_button'>Назад в каталог</button>
+                <button onClick={() => navigate('/products')} className='favCard_button'>Назад в каталог</button>
             </div>
         </div>
     )

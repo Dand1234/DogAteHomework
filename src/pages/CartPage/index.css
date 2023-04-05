@@ -42,8 +42,8 @@
     width: 90px;
     border-radius: 15px;
     border-width: 3px;
-    border-style: dashed;
-    border-color: rgb(203, 74, 31);
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
 }
 
 .cleanAll {
