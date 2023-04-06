@@ -6,12 +6,26 @@ import './index.css'
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/slices/cart";
 import Star from '../../assets/pics/Star.png'
+import { useState } from "react";
 
 export const DetailProductPage = () => {
     const { token } = useAuth();
     const param = useParams();
     const dispatch = useDispatch();
     const productId = param.id;
+    const [index,setIndex] = useState(0);
+
+    const incrementHandler = (value) => {
+        value++;
+        if (value === productFetch.reviews.length) {return setIndex(0)}
+        else return setIndex(value)
+    }
+
+    const decrementHandler = (value) => {
+        value--;
+        if (value < 0) {return setIndex(productFetch.reviews.length-1)}
+        else return setIndex(value)
+    }
 
     const {data:productFetch, isLoading, isError, error} = useQuery({
         queryKey: ['DetailProductQuery'],
@@ -44,13 +58,15 @@ export const DetailProductPage = () => {
             <img src={productFetch.pictures} alt={productFetch.name} className='detailProd_img'/>
             <div className="detailProd_Items">
                 <p className="detailProd_ItemPrice">{productFetch.price} р</p>
-                <p className="detailProd_ItemDescript">{productFetch.description}</p>
-                <div className="comments"> 
+                <div className="comments_div"> 
+                    <p className="detailProd_ItemDescript">{productFetch.description}</p>
                     <p>Вот, что говорят люди!</p>
-                    <div className="comments_section">
-                        {productFetch.reviews? productFetch.reviews.map(comment => <p key={comment._id}>- {comment.text}  
-                        <img src={Star} alt='zvezda' className="comment__star"/> {comment.rating}</p>):<p>Пока что отзывов нет</p>}
+                    <div className="comments">
+                       <button onClick={() => decrementHandler(index)} className='comment__button'>&#8592;</button>
+                       <span className="comments_section">{productFetch.reviews[index].text}<img src = {Star} alt='Rating' className="comment__star"/> {productFetch.reviews[index].rating}</span>
+                       <button onClick={() => incrementHandler(index)} className='comment__button'>&#8594;</button>
                     </div>
+                    {/* <img src = {Star} alt='Rating' className="comment_star"/> */}
                 </div>
                 <p className="detailProd_ItemAvaliable">{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>
             </div>

@@ -82,7 +82,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -15px;
+}
+
+.comments_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+    margin-top: -20px;
 }
 
 .comments_section {
@@ -95,6 +103,8 @@
     border-radius: 15px;
     padding: 1px;
     margin-left: 5px ;
+    display: flex;
+    justify-content:space-around;
 }
 
 .comments_section::-webkit-scrollbar {
@@ -108,3 +118,16 @@
 .comment__star {
     width: 20px;
 }
+
+.comment__button {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 30px;
+    background-color: rgb(203, 74, 31);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* .comments_section :nth-last-child(-n+3) {
+    margin-right: auto;
+} */
