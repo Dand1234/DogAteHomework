@@ -38,7 +38,7 @@ export const UserPage = () => {
                         >Изменить фото</button>
                     <button onClick = {() => setIsChangeNameOpen(true)} className='buttonSection__button'
                         >Изменить имя или описание</button>         
-                    <button onClick={() => navigate('..')} className='buttonSection__button'>Назад</button>
+                    <button onClick={() => navigate('/products')} className='buttonSection__button'>Назад</button>
                     <button onClick={handleExit} className='buttonSection__button-exit'>Выход</button>
             </div>
             <Modal active={isChangeAvatarOpen} setActive={setIsChangeAvatarOpen}> {<UserChangeAvatarMdl />} </Modal>

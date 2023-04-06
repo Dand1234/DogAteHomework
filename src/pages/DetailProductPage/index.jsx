@@ -5,6 +5,7 @@ import { Spinner } from '../../components/Spinner/Spinner';
 import './index.css'
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/slices/cart";
+import Star from '../../assets/pics/Star.png'
 
 export const DetailProductPage = () => {
     const { token } = useAuth();
@@ -35,6 +36,8 @@ export const DetailProductPage = () => {
 
     if (isError) return <h1>Error:{error.message}</h1>
 
+    console.log(productFetch.reviews)
+
     return(
         <div className="detailProd">
             <h2>{productFetch.name}</h2>
@@ -45,7 +48,8 @@ export const DetailProductPage = () => {
                 <div className="comments"> 
                     <p>Вот, что говорят люди!</p>
                     <div className="comments_section">
-                        {productFetch.reviews.map(comment => <p key={comment._id}>- {comment.text}</p>)}
+                        {productFetch.reviews? productFetch.reviews.map(comment => <p key={comment._id}>- {comment.text}  
+                        <img src={Star} alt='zvezda' className="comment__star"/> {comment.rating}</p>):<p>Пока что отзывов нет</p>}
                     </div>
                 </div>
                 <p className="detailProd_ItemAvaliable">{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>

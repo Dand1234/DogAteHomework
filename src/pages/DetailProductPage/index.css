@@ -104,3 +104,7 @@
 .detailProd_ItemDescript::-webkit-scrollbar {
     width: 0;
 }
+
+.comment__star {
+    width: 20px;
+}

@@ -77,3 +77,10 @@
     background-color: rgb(203, 74, 31);
     border-radius: 15px;
 }
+
+.cartWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

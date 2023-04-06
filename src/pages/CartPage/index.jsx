@@ -113,8 +113,8 @@ export const CartPage = () => {
   if (isLoading) return <Spinner />
 
   return (
-    <>
-      <h1 className="headerOfCart">Корзина</h1>
+    <div className="cartWrapper">
+      <h1>Корзина</h1>
       <ul className="list-group">
         {products.map(product => <ProductInCart product={product} key={product._id} />)}
       </ul>
@@ -122,6 +122,6 @@ export const CartPage = () => {
       <div className="deleteAndCountSection">
         <RealCart />
       </div>
-    </>
+    </div>
   )
 }
