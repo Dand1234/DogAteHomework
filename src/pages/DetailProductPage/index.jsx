@@ -50,8 +50,6 @@ export const DetailProductPage = () => {
 
     if (isError) return <h1>Error:{error.message}</h1>
 
-    console.log(productFetch.reviews)
-
     return(
         <div className="detailProd">
             <h2>{productFetch.name}</h2>
