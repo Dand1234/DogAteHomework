@@ -5,13 +5,13 @@
     align-items: center;
 }
 
-.favWrapper__Cards {
+.cards {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
 }
 
-.favCard {
+.card {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,19 +23,18 @@
     border-radius: 15px;
 }
 
-.favCard__img {
+.cardImg {
     width: 150px;
     height: 150px;
     border-radius: 15px;
     position: relative;
-    
+
 }
 
-.favCard_button {
+.cardButton {
     min-width: 100px;
     height: 30px;
     background-color: rgb(243, 205, 107);
     border-radius: 15px;
     margin: 5px;
 }
-

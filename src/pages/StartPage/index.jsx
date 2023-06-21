@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import './index.css'
+import style from './index.module.css';
 
 export const StartPage = () => {
 
@@ -14,10 +14,10 @@ export const StartPage = () => {
 
     return(
         <>
-            <div className='wrapper'>
+            <div className={style.wrapper}>
                 <h1>Здравствуйте!</h1>
                 <h2>Пожалуйста, войдите или зарегистрируйтесь!</h2>
-                <div className='start__buttonSection'>
+                <div className={style.button}>
                     <button onClick={() => navigate('/auth')} className='button'>Войти</button>
                     <button onClick={() => navigate('/reg')} className='button'>Зарегистрироваться</button>
                 </div>

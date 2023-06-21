@@ -30,7 +30,7 @@
     display: flex;
     justify-content: center;
 }
-.buttonSection__button {
+.button {
     width: 200px;
     height: 60px;
     background-color: darkgoldenrod;
@@ -38,7 +38,7 @@
     margin: 30px;
 }
 
-.buttonSection__button-exit {
+.exitButton {
     width: 200px;
     height: 60px;
     background-color: darkgoldenrod;

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
-import './index.css';
+import style from './index.module.css';
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -26,7 +26,7 @@ export const RegPage = () => {
         password: '',
         group: ''
     }
-    
+
 
     const {mutateAsync:regQuery, isError, error } = useMutation({
         mutationKey: ['registrationQuery'],
@@ -47,17 +47,17 @@ export const RegPage = () => {
 
               if (res.status === 409 ) throw new Error ('Пользователь с указанным E-mail уже существует!');
               else if (res.status > 399 && res.status < 500 ) throw new Error ('Повторите попытку регистрации');
-              else if (res.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже');   
+              else if (res.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже');
 
             else return navigate('../auth')
         }})
 
     if (isError) return <p>Ошибка:{error.message}</p>
 
-    const onSubmit = (values) => { 
+    const onSubmit = (values) => {
       regQuery(values);
     }
-      
+
 
     return(
         <>
@@ -68,12 +68,12 @@ export const RegPage = () => {
           validationSchema={validationsSchema}
         >
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
-            <div className='wrapper'>
+            <div className={style.wrapper}>
               <h2>Введите данные для регистрации</h2>
               <p>
                 <label htmlFor='email'>Email</label><br />
                 <input
-                  className='input'
+                  className={style.input}
                   type='email'
                   name='email'
                   onChange={handleChange}
@@ -86,7 +86,7 @@ export const RegPage = () => {
               <p>
                 <label htmlFor='password'>Пароль</label><br />
                 <input
-                  className='input'
+                  className={style.input}
                   type='password'
                   name='password'
                   onChange={handleChange}
@@ -99,7 +99,7 @@ export const RegPage = () => {
               <p>
                 <label htmlFor='group'>Номер группы</label><br />
                 <input
-                  className='input'
+                  className={style.input}
                   type='group'
                   name='group'
                   onChange={handleChange}
@@ -112,7 +112,7 @@ export const RegPage = () => {
               <button
                 onClick={handleSubmit}
                 type='submit'
-                className="button"
+                className={style.button}
               >Регистрация</button>
             </div>
           )}

@@ -4,9 +4,9 @@ import { useAuth } from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { deleteFromFav, cleanFav } from "../../redux/slices/favourite";
-import './index.css'
 import { EmptyPage } from "../../components/EmptyPage";
 import { addToCart } from "../../redux/slices/cart";
+import style from './index.module.css'
 
 export const FavPage = () => {
     const { token } = useAuth();
@@ -17,16 +17,16 @@ export const FavPage = () => {
 
     const FavCard = ({product}) => {
         return(
-            <div className="favCard">
+            <div className={style.card}>
                 <h5>{product.name}</h5>
-                <img src={product.pictures} alt={product.name} className='favCard__img'/>
+                <img src={product.pictures} alt={product.name} className={style.cardImg}/>
                 <ul>
                     <li>Цена:{product.price} р.</li>
                 </ul>
                 <span>Понравилось {product.likes.length} людям!</span>
                 <div>
-                    <button onClick={() => dispatch(deleteFromFav(product._id))} className='favCard_button'>Убрать из избранного</button>
-                    <button onClick={() => dispatch(addToCart(product._id))} className='favCard_button'>Добавить в корзину</button>
+                    <button onClick={() => dispatch(deleteFromFav(product._id))} className={style.cardButton}>Убрать из избранного</button>
+                    <button onClick={() => dispatch(addToCart(product._id))} className={style.cardButton}>Добавить в корзину</button>
                 </div>
             </div>
         )}
@@ -39,7 +39,7 @@ export const FavPage = () => {
               await fetch(`https://api.react-learning.ru/products/${favProduct.id}`, {
                 headers: {
                   Authorization: `Bearer ${token}`
-                }   
+                }
               })
                 .then(res => res.json())))
             .then(result => result.map(elememt => elememt.value))
@@ -52,14 +52,14 @@ export const FavPage = () => {
       if (isLoading) return <Spinner />
 
     return(
-        <div className="favWrapper">
+        <div className={style.favWrapper}>
             <h1>Избранные товары </h1>
-            <div className="favWrapper__Cards">
+            <div className={style.cards}>
                 {favQuery.map(product => <FavCard key={product._id} product={product}/>)}
             </div>
             <div>
-                <button onClick={() => dispatch(cleanFav())} className='favCard_button'>Отчистить избранное</button>
-                <button onClick={() => navigate('/products')} className='favCard_button'>Назад в каталог</button>
+                <button onClick={() => dispatch(cleanFav())} className={style.cardButton}>Отчистить избранное</button>
+                <button onClick={() => navigate('/products')} className={style.cardButton}>Назад в каталог</button>
             </div>
         </div>
     )

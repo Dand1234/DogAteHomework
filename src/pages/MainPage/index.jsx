@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import './index.css'
+import style from './index.module.css'
 import { ProductCard } from "../../components/ProductCard";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { useAuth } from '../../hooks/useAuth'
@@ -23,7 +23,7 @@ export const MainPage = () => {
             const parseData = await query.json();
 
             if (parseData.status > 399 && parseData.status < 500 ) throw new Error ('Повторите попытку регистрации');
-            else if (parseData.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже');  
+            else if (parseData.status > 500 ) throw new Error ('Ошибка сервера, попробуйте позже');
 
             return parseData;
         }
@@ -34,10 +34,10 @@ export const MainPage = () => {
     if (products.length === 0) return (<EmptySearch />)
 
     return(
-            <div className="mainWrapper">
+            <div className={style.mainWrapper}>
                 {products.map(card =>
                     <ProductCard key={card._id} card={card}/>
-                )} 
-            </div>   
-                 
+                )}
+            </div>
+
     )}
