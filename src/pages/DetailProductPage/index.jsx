@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { Spinner } from '../../components/Spinner/Spinner';
-import './index.css'
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/slices/cart";
 import Star from '../../assets/pics/Star.png'
 import { useState } from "react";
+import style from './index.module.css'
 
 export const DetailProductPage = () => {
     const { token } = useAuth();
@@ -51,25 +51,24 @@ export const DetailProductPage = () => {
     if (isError) return <h1>Error:{error.message}</h1>
 
     return(
-        <div className="detailProd">
+        <div className={style.main}>
             <h2>{productFetch.name}</h2>
-            <img src={productFetch.pictures} alt={productFetch.name} className='detailProd_img'/>
-            <div className="detailProd_Items">
-                <p className="detailProd_ItemPrice">{productFetch.price} р</p>
-                <div className="comments_div"> 
-                    <p className="detailProd_ItemDescript">{productFetch.description}</p>
+            <img src={productFetch.pictures} alt={productFetch.name} className={style.img}/>
+            <div className={style.items}>
+                <p className={style.itemPrice}>{productFetch.price} р</p>
+                <div className={style.comments}> 
+                    <p className={style.ItemDescription}>{productFetch.description}</p>
                     <p>Вот, что говорят люди!</p>
-                    <div className="comments">
-                       <button onClick={() => decrementHandler(index)} className='comment__button'>&#8592;</button>
-                       <span className="comments_section">{productFetch.reviews[index].text}<img src = {Star} alt='Rating' className="comment__star"/> {productFetch.reviews[index].rating}</span>
-                       <button onClick={() => incrementHandler(index)} className='comment__button'>&#8594;</button>
+                    <div className={style.comment}>
+                       <button onClick={() => decrementHandler(index)} className={style.skipButton}>&#8592;</button>
+                       <span className={style.commentText}>{productFetch.reviews[index].text}<img src = {Star} alt='Rating' className={style.starImg}/> {productFetch.reviews[index].rating}</span>
+                       <button onClick={() => incrementHandler(index)} className={style.skipButton}>&#8594;</button>
                     </div>
-                    {/* <img src = {Star} alt='Rating' className="comment_star"/> */}
                 </div>
-                <p className="detailProd_ItemAvaliable">{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>
+                <p className={style.avaliable}>{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>
             </div>
-            <span className="detailProd_likeSection">Нравится {productFetch.likes.length} людям</span>
-            <button onClick={() => dispatch(addToCart(productFetch._id))} className='detailProd__button'>В корзину</button>
+            <span className={style.likes}>Нравится {productFetch.likes.length} людям</span>
+            <button onClick={() => dispatch(addToCart(productFetch._id))} className={style.button}>В корзину</button>
         </div>
     )
 }

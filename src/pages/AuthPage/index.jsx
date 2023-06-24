@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/slices/user";
-import './index.css'
+import style from './index.module.css'
 
 export const AuthPage = () => {
 
@@ -73,13 +73,13 @@ export const AuthPage = () => {
         onSubmit={onSubmit}
         validationSchema={validationsSchema}
       >
-        {({ values, errors, touched, isValid, handleSubmit, handleChange, handleBlur, dirty }) => (
-          <div className='wrapper'>
+        {({ values, errors, touched, handleSubmit, handleChange, handleBlur }) => (
+          <div className={style.wrapper}>
             <h1>Введите данные для входа</h1>
             <p>
               <label htmlFor='email'>Email</label><br />
               <input
-                className='input'
+                className={style.input}
                 type='email'
                 name='email'
                 onChange={handleChange}
@@ -87,12 +87,12 @@ export const AuthPage = () => {
                 value={values.email}
               />
             </p>
-            {touched.email && errors.email && <p className={'error'}>{errors.email}</p>}
+            {touched.email && errors.email && <p className={style.error}>{errors.email}</p>}
 
             <p>
               <label htmlFor='password'>Пароль</label><br />
               <input
-                className='input'
+                className={style.input}
                 type='password'
                 name='password'
                 onChange={handleChange}
@@ -100,12 +100,12 @@ export const AuthPage = () => {
                 value={values.password}
               />
             </p>
-            {touched.password && errors.password && <p className={'error'}>{errors.password}</p>}
+            {touched.password && errors.password && <p className={style.error}>{errors.password}</p>}
 
             <button
               onClick={handleSubmit}
               type='submit'
-              className="button"
+              className={style.button}
             >Войти</button>
           </div>
         )}

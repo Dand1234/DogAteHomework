@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { Spinner } from "../../components/Spinner/Spinner"
 import { useAuth } from "../../hooks/useAuth"
 import { deleteFromCart, dicrementProduct, incrementProduct, clearCart, changeCheck } from "../../redux/slices/cart"
-import './index.css'
-import { EmptyPage } from '../../components/EmptyPage/index'
+import style from './index.module.css';
+import { EmptyPage } from '../../components/EmptyPage/index';
 
 const totalPrice = (count, price, discount) => {
     return count * price * (1 - discount / 100)
@@ -40,7 +40,7 @@ const RealCart = () => {
 
 
   return (
-    <div className="realCart">
+    <div className={style.realCart}>
       <p>Всего: <span>{totalPriceOfAll} руб.</span></p>
     </div>
   )
@@ -52,27 +52,27 @@ const ProductInCart = ({ product: { name, price, discount, _id, stock, pictures 
 
   const { count, isChecked } = cart.find(el => el.id === _id)
 
-  return <li className="listItem">
+  return <li className={style.listItem}>
     <input
       type="checkbox"
       onChange={(event) => dispatch(changeCheck({ _id, isChecked: event.target.checked }))}
       checked={isChecked}
     />
-    <img src={pictures} alt={name} className='productImg'/>
+    <img src={pictures} alt={name} className={style.productImg}/>
     {name}
-    <span className="numberSection">{count} штук</span>
-    <div className="countDiv">
+    <span className={style.numberSection}>{count} штук</span>
+    <div className={style.countDiv}>
       <button
-        className="buttonCart"
+        className={style.buttonCart}
         onClick={() => dispatch(dicrementProduct(_id))}
       >
         -
       </button>
-      <span className="numberSection">
+      <span className={style.numberSection}>
         {totalPrice(count, price, discount)} р
       </span>
       <button
-        className="buttonCart"
+        className={style.buttonCart}
         disabled={count === stock}
         onClick={() => dispatch(incrementProduct(_id))}
       >
@@ -80,7 +80,7 @@ const ProductInCart = ({ product: { name, price, discount, _id, stock, pictures 
       </button>
     </div>
     <button
-      className="buttonCart"
+      className={style.buttonCart}
       onClick={() => dispatch(deleteFromCart(_id))}
     >
       X
@@ -113,13 +113,13 @@ export const CartPage = () => {
   if (isLoading) return <Spinner />
 
   return (
-    <div className="cartWrapper">
+    <div className={style.cartWrapper}>
       <h1>Корзина</h1>
       <ul className="list-group">
         {products.map(product => <ProductInCart product={product} key={product._id} />)}
       </ul>
-      <button onClick={() => dispatch(clearCart())} className="cleanAll">Очистить корзину</button>
-      <div className="deleteAndCountSection">
+      <button onClick={() => dispatch(clearCart())} className={style.cleanAll}>Очистить корзину</button>
+      <div className={style.deleteAndCountSection}>
         <RealCart />
       </div>
     </div>
