@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDebounce } from "../../hooks/useDebounce";
 import { changeSearch } from "../../redux/slices/search";
-import './index.css'
+import style from './index.module.css';
 
 export const SearchBar = () => {
     const [searchParams] = useSearchParams();
@@ -33,9 +33,9 @@ export const SearchBar = () => {
     }
 
     return(
-        <div className="searchBar">
+        <div className={style.searchBar}>
             <input
-            className="searchBar__input"
+            className={style.input}
             placeholder='Что вы хотите найти?'
             type="text"
             value={search}

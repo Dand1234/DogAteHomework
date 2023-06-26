@@ -4,12 +4,7 @@
     margin: 30px;
 }
 
-.searchBar__button {
-    height: 40px;
-    border-radius: 15px;
-}
-
-.searchBar__input {
+.input {
     height: 40px;
     border-radius: 15px;
     margin-right: 20px;

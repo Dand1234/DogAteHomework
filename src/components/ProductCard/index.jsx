@@ -1,4 +1,4 @@
-import './index.css';
+import style from './index.module.css';
 import Like from '../../assets/pics/Like.png';
 import { useNavigate } from 'react-router-dom';
 import { addToCart } from "../../redux/slices/cart";
