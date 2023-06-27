@@ -11,27 +11,7 @@
         flex-wrap: wrap;
 }
 
-.card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 400px;
-    width: 300px;
-    border: 1px solid;
-    margin: 10px;
-    border-radius: 15px;
-}
-
-.cardImg {
-    width: 150px;
-    height: 150px;
-    border-radius: 15px;
-    position: relative;
-
-}
-
-.cardButton {
+.button {
     min-width: 100px;
     height: 30px;
     background-color: rgb(243, 205, 107);

@@ -115,7 +115,7 @@
     width: 0;
 }
 
-.comment__star {
+.starImg {
     width: 20px;
 }
 
@@ -128,6 +128,6 @@
     margin-right: 10px;
 }
 
-/* .comments_section :nth-last-child(-n+3) {
-    margin-right: auto;
-} */
+.comment :nth-last-child(n+1) {
+    margin-left: auto;
+}

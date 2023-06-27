@@ -1,0 +1,27 @@
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 400px;
+    width: 300px;
+    border: 1px solid;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.img {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    position: relative;
+
+}
+
+.button {
+    min-width: 100px;
+    height: 30px;
+    background-color: rgb(243, 205, 107);
+    border-radius: 15px;
+    margin: 5px;
+}

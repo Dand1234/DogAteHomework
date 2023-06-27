@@ -17,9 +17,9 @@ export const StartPage = () => {
             <div className={style.wrapper}>
                 <h1>Здравствуйте!</h1>
                 <h2>Пожалуйста, войдите или зарегистрируйтесь!</h2>
-                <div className={style.button}>
-                    <button onClick={() => navigate('/auth')} className='button'>Войти</button>
-                    <button onClick={() => navigate('/reg')} className='button'>Зарегистрироваться</button>
+                <div>
+                    <button onClick={() => navigate('/auth')} className={style.button}>Войти</button>
+                    <button onClick={() => navigate('/reg')} className={style.button}>Зарегистрироваться</button>
                 </div>
             </div>
         </>

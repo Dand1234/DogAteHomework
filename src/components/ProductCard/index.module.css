@@ -12,7 +12,7 @@
     justify-content: space-between;
 }
 
-.productCard__img {
+.img {
     width: 150px;
     height: 150px;
     border-radius: 15px;
@@ -20,11 +20,11 @@
     
 }
 
-.productCard__like {
+.like {
     width: 30px;
 }
 
-.productCard__button {
+.button {
     min-width: 100px;
     height: 30px;
     background-color: rgb(243, 205, 107);
@@ -32,7 +32,7 @@
     margin-top: 5px;
 }
 
-.likeSection {
+.likes {
     display: flex;
     flex-direction: row;
 }

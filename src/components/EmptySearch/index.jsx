@@ -1,12 +1,9 @@
-import './index.css'
-// import Empty from '../../assets/pics/Empty.png'
+import style from './index.module.css';
 
 export const EmptySearch = () => {
     return ( 
-        <div className='wrapperNotFound'>
-            <h2 className="errorText">По Вашему запросу ничего не найдено!</h2>
-            {/* <img src={Empty} alt='Ничего нету' />
-            Если надо, пикчу уберу */}
+        <div className={style.wrapper}>
+            <h2 className={style.errorText}>По Вашему запросу ничего не найдено!</h2>
         </div>
     )
 } 
