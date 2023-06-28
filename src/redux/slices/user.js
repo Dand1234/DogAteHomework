@@ -5,6 +5,19 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: initialUserState,
   reducers: {
+    changeUserAvatar: (_, action) => {
+      return{
+        ..._,
+        avatar: action.payload.avatar,
+      }
+    },
+    changeUserData: (_, action) => {
+      return{
+        ..._,
+        name: action.payload.name,
+        about: action.payload.about
+      }
+    },
     setUser: (_, action) => {
       return action.payload
     },
@@ -14,6 +27,6 @@ export const userSlice = createSlice({
   }
 })
 
-export const { setUser, removeUser } = userSlice.actions
+export const { setUser, removeUser, changeUserAvatar, changeUserData } = userSlice.actions
 
 export const userReducer = userSlice.reducer

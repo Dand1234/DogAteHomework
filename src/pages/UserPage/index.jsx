@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from '../../redux/slices/user';
 import { clearCart } from '../../redux/slices/cart';
-import style from './index.module.css'
+import style from './index.module.css';
 
 
 export const UserPage = () => {

@@ -1,7 +1,8 @@
 import { Formik } from "formik";
 import * as yup from 'yup';
-import { useMutation } from '@tanstack/react-query'
-import { useSelector } from "react-redux";
+import { useMutation } from '@tanstack/react-query';
+import { useSelector, useDispatch } from "react-redux";
+import { changeUserAvatar } from "../../../redux/slices/user";
 
 export const UserChangeAvatarMdl = () => {
 
@@ -13,9 +14,11 @@ export const UserChangeAvatarMdl = () => {
         avatar: '',
     }
 
+    const dispatch = useDispatch();
+
     const onSubmit = (values) => {
         changeAvatar(values)
-
+        dispatch(changeUserAvatar(values))
     }
 
     const { token } = useSelector(state => state.user);
