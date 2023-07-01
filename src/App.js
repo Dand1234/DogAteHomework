@@ -10,6 +10,7 @@ import { DetailProductPage } from './pages/DetailProductPage/index';
 import './App.css';
 import { FavPage } from './pages/FavPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { MyProductsPage } from './pages/MyProductsPage';
 
 export function App() {
 
@@ -25,6 +26,7 @@ export function App() {
           <Route path='cart' element={<CartPage />} />
           <Route path='products/:id' element={<DetailProductPage />} />
           <Route path='fav' element={<FavPage />} />
+          <Route path='myProducts' element={<MyProductsPage/>} />
           <Route path='*' element={<NotFoundPage/>} />
         </Route>
       </Routes>

@@ -52,20 +52,27 @@ export const DetailProductPage = () => {
 
     return(
         <div className={style.main}>
-            <h2>{productFetch.name}</h2>
-            <img src={productFetch.pictures} alt={productFetch.name} className={style.img}/>
+            <h2 className={style.header}>{productFetch.name}</h2>
             <div className={style.items}>
-                <p className={style.itemPrice}>{productFetch.price} р</p>
                 <div className={style.comments}> 
-                    <p className={style.ItemDescription}>{productFetch.description}</p>
+                    <p className={style.itemPrice}>{productFetch.price} р</p>
+                    <p className={style.avaliable}>{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>
+                    <details className={style.ItemDescription}>
+                        <summary>Описание</summary>
+                        {productFetch.description}
+                    </details>
                     <p>Вот, что говорят люди!</p>
                     <div className={style.comment}>
-                       <button onClick={() => decrementHandler(index)} className={style.skipButton}>&#8592;</button>
-                       <span className={style.commentText}>{productFetch.reviews[index].text}<img src = {Star} alt='Rating' className={style.starImg}/> {productFetch.reviews[index].rating}</span>
-                       <button onClick={() => incrementHandler(index)} className={style.skipButton}>&#8594;</button>
+                    {productFetch.reviews.length ? 
+                        <>
+                            <button onClick={() => decrementHandler(index)} className={style.skipButton}>&#8592;</button>
+                            <span className={style.commentText}> {productFetch.reviews[index].text} <img src = {Star} alt='Rating' className={style.starImg}/> {productFetch.reviews[index].rating} </span>
+                            <button onClick={() => incrementHandler(index)} className={style.skipButton}>&#8594;</button> 
+                       </> : <span>Нет отзывов</span>
+                    }
                     </div>
                 </div>
-                <p className={style.avaliable}>{productFetch.avaliable ? 'Под заказ':'В наличии'}</p>
+                <img src={productFetch.pictures} alt={productFetch.name} className={style.img}/>
             </div>
             <span className={style.likes}>Нравится {productFetch.likes.length} людям</span>
             <button onClick={() => dispatch(addToCart(productFetch._id))} className={style.button}>В корзину</button>

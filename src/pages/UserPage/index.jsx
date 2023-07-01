@@ -38,6 +38,8 @@ export const UserPage = () => {
                         >Изменить фото</button>
                     <button onClick = {() => setIsChangeNameOpen(true)} className={style.button}
                         >Изменить имя или описание</button>
+                    <button onClick = {() => navigate('/myProducts')} className={style.button}
+                        >Мои товары</button>
                     <button onClick={() => navigate('/products')} className={style.button}>Назад</button>
                     <button onClick={handleExit} className={style.exitButton}>Выход</button>
             </div>
